@@ -17,3 +17,6 @@ do
     rm -v ~/.config/$dir
     ln -sv $PWD/$dir ~/.config/$dir
 done
+
+rm -v ~/Library/Application\ Support/com.mitchellh.ghostty/config
+ln -sv $PWD/ghostty/config $PWD/Library/Application\ Support/com.mitchellh.ghostty/config
