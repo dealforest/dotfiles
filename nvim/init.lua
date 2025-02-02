@@ -47,8 +47,12 @@ require("lazy").setup({
 	{
 		"nanotech/jellybeans.vim",
 		priority = 1000,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme jellybeans]])
+			vim.cmd([[colorscheme kanagawa]])
 		end,
 	},
 
@@ -65,8 +69,8 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
-			indent = { char = "|" }
-			scope = { enabled = true }
+			indent = { char = "|" },
+			scope = { enabled = true },
 		}
 	},
 	{ "petertriho/nvim-scrollbar", config = true },
