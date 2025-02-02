@@ -63,9 +63,11 @@ require("lazy").setup({
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = {
-			show_current_context = true,
-		},
+		main = "ibl",
+		opts = {
+			indent = { char = "|" }
+			scope = { enabled = true }
+		}
 	},
 	{ "petertriho/nvim-scrollbar", config = true },
 
