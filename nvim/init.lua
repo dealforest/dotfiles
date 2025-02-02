@@ -141,7 +141,7 @@ require("lazy").setup({
 	},
 
 	-- LSP
-	"nejvim/nvim-lspconfig",
+	"neovim/nvim-lspconfig",
 	{ "williamboman/mason.nvim", config = true },
 	{
 		"williamboman/mason-lspconfig.nvim",
