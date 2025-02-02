@@ -19,10 +19,10 @@ bind generic g move-first-line
 bind generic G move-last-line
 bind generic <Ctrl-f> move-page-down
 bind generic <Ctrl-b> move-page-up
-bind generic % refresh
+bind generic <Ctrl-r> refresh
 
-bind generic xf !git fetch --all --prune --verbo
-bind generic xd @sh -c 'git log --format=%B -n1 %(commit) | pbcopy; open /Applications/DeepL.app; osascript -e \'tell application "System Events" to keystroke "v" using command down\''
+bind generic xF !git fetch --all --prune --verbose
+bind generic xl @sh -c 'git log --format=%B -n1 %(commit) | pbcopy; open /Applications/DeepL.app; osascript -e \'tell application "System Events" to keystroke "v" using command down\''
 bind generic xyy @sh -c "echo %(commit) | pbcopy"
 bind generic xym @sh -c "git find-merge %(commit) HEAD | pbcopy"
 
@@ -33,11 +33,24 @@ bind main xo !hub browse -- commit/%(commit)
 bind main xt !?git tag "%(prompt Enter new tag name: )" %(commit)
 bind main xT !?git tag -d "%(tag)"
 bind main xr !git rebase --autosquash -i %(commit)
-bind main xcf !?git commit --fixup %(commit)
-bind main xcs !?git commit --squash %(commit)
+bind main xd !?git diff %(branch) %(commit) 
+bind main xa !?git commit --amend
+bind main xf !?git commit --fixup %(commit)
+bind main xF !?git commit --squash %(commit)
+bind main xs !?git stash
+bind main xS !?git stash pop
+bind main xc !?git switch %(branch)
+bind main xC !?git checkout %(commit)
+bind main xv !?git checkout -
+bind main xV !?git switch "%(prompt Enter new branch name: )"
 bind main xp !?git push origin %(branch)
 bind main xP !?git push --force origin %(branch)
+bind main xb !?git switch -c "%(prompt Enter new branch name: )" %(commit)
+bind main xB !?git branch "%(prompt Enter new branch name: )" %(commit)
 bind main xm !?git branch -m %(branch) "%(prompt Enter new branch name: )" 
+bind main xx !?git find-merge %(commit) %(branch)
+bind main xX !?git show-merge %(commit) %(branch)
+bind main a >!git log --merges --oneline %(commit)..HEAD
 bind generic d >sh -c "DELTA_PAGER='less -RKc' git show %(commit) --ext-diff"
 bind generic D @sh -c "\
   ( \
@@ -56,7 +69,7 @@ bind main S :toggle date
 # bind main xrebase !git rebase --autosquash -i %(commit)
 # bind main xreset !?git reset %(commit)
 # bind main xReset !?git reset --hard %(commit)
-# bind main xco !git checkout %(commit)
+# bind main xco !git switch %(commit)
 # bind main xtag !?git tag "%(prompt Enter new tag name: )" %(commit)
 # bind main xTag !?git tag -d "%(tag)"
 # bind main xcc !@git pbcopy %(commit)
@@ -79,7 +92,10 @@ bind log xo !hub browse -- commit/%(commit)
 ########
 # refs key binds
 ########
-bind refs xc !?git checkout -b "%(prompt Enter new branch name: )" %(branch)
+bind refs xc !?git switch -c "%(prompt Enter new branch name: )" %(branch)
+bind refs xm !?git branch -m %(branch) "%(prompt Enter new branch name: )" 
+bind refs xp !?git push origin %(branch)
+bind refs xP !?git push --force origin %(branch)
 
 # bind refs xpull !?git pull "%(prompt Enter remote name: )" %(branch) --rebase
 # bind refs xpush !?git push "%(prompt Enter remote name: )" %(branch)
@@ -92,3 +108,4 @@ bind refs xc !?git checkout -b "%(prompt Enter new branch name: )" %(branch)
 # bind refs xmove !?git branch -m %(branch) "%(prompt Enter new branch name:)"
 # bind refs xtag !?git tag "%(prompt Enter new tag name: )" %(branch)
 # bind refs xTag !?git tag -d "%(tag)"
+
