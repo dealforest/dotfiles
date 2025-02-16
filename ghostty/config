@@ -19,3 +19,5 @@ window-inherit-working-directory = false
 
 keybind = ctrl+enter=text:\r
 keybind = ctrl+m=text:\r
+
+keybind = global:ctrl+q=toggle_quick_terminal

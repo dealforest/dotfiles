@@ -1,0 +1,8 @@
+{
+  "karabiner": "~/.config/karabiner",
+  "Brewfile": "~/.Brewfile",
+  "ghostty": "~/.config/ghostty",
+  "jj": "~/.config/jj",
+  "tig": "~/.config/tig",
+  "lazygit": "~/.config/lazygit"
+}

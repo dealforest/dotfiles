@@ -1,9 +1,0 @@
-command regex pe 's/^[[:space:]]*$/po [[NSProcessInfo processInfo] environment]/'
-command regex ps 's/^[[:space:]]*$/po [NSThread callStackSymbols]/'
-command regex pd 's/^(.+)$/po [[NSString alloc] initWithData:%1 encoding:4]/'
-command regex pj 's/^(.+)$/po [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:%1 options:1 error:nil] encoding:4]/'
-command regex pa 's/^(.+)$/p [(CALayer *)[[[[UIApplication sharedApplication] windows] objectAtIndex:0] layer] setSpeed:%1]/'
-
-command script import lldb.macosx.heap
-
-command source ~/.lldbinit

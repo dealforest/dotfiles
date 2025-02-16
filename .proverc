@@ -1,5 +1,0 @@
---exec "perl -I/Users/dealforest/work/company/wano/projects/wanon2/lib -Ilib -It/lib -MTest::Flatten -MTest::Name::FromLine"
---color
-#--merge
---timer
--w
