@@ -1,6 +1,0 @@
-{
-    "Keymap": {
-        "C-v": "peco.ToggleSelectionAndSelectNext",
-        "C-c": "peco.Cancel"
-    }
-}

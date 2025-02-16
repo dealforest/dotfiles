@@ -1,5 +1,0 @@
-author:  Toshihiro Morimoto
-email:   dealforest.net@gmail.com
-builder: ExtUtils::MakeMaker Module::Build
-plugins: Module::Starter::PBP
-template_dir: /Users/dealforest/.module-starter/PBP
