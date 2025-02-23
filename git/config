@@ -3,10 +3,10 @@
     email = m@dealfore.st
     signingkey = 523AEF38
 [include]
-    path = ~/.gitconfig.local
+    path = ~/.config/git/config.local
 [core]
     editor             = /usr/bin/vim
-    excludesfile       = ~/.gitignore
+    excludesfile       = ~/.config/git/ignore
     precomposedunicode = true
 [color]
     ui = true
@@ -59,7 +59,7 @@
 [http]
     postBuffer = 524288000
 [commit]
-    template = commit_template
+    template = ~/.config/git/commit_template
 [ghq]
   root = ~/.ghq
 [color "diff-highlight"]

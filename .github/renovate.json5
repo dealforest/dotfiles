@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ]
+  },
+  "extends": [
+    "github>aquaproj/aqua-renovate-config#2.7.4"
+  ],
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
+  "platformAutomerge": true,
+  "dependencyDashboard": false,
+  "automerge": true,
+  "branchConcurrentLimit": 0,
+  "minimumReleaseAge": "3 days"
+}

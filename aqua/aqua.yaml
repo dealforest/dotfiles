@@ -130,3 +130,4 @@ packages:
   - name: nodejs/node@v23.6.1
   - name: tamasfe/taplo@0.9.3
   - name: jj-vcs/jj@v0.26.0
+  - name: secretlint/secretlint@v9.1.0

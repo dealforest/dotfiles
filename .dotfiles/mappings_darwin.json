@@ -4,5 +4,6 @@
   "ghostty": "~/.config/ghostty",
   "jj": "~/.config/jj",
   "tig": "~/.config/tig",
-  "lazygit": "~/.config/lazygit"
+  "lazygit": "~/.config/lazygit",
+  "secretlint/.secretlintrc.json": "~/.secretlintrc.json"
 }
