@@ -3,13 +3,12 @@ decors/fish-ghq
 matchai/fish-mock
 0rax/fish-bd
 joehillen/ev-fish
-jorgebucaran/spark.fish
 jethrokuan/fzf
 jorgebucaran/autopair.fish
 jorgebucaran/replay.fish
-edc/bass
 gazorby/fish-abbreviation-tips
 ryoppippi/bdf.fish
 yuys13/pathed.fish
 nickeb96/puffer-fish
-jorgebucaran/hydro
+pure-fish/pure
+yuys13/fish-cdf

@@ -131,3 +131,5 @@ packages:
   - name: tamasfe/taplo@0.9.3
   - name: jj-vcs/jj@v0.26.0
   - name: secretlint/secretlint@v9.1.0
+  - name: eza-community/eza@v0.20.22
+  - name: koki-develop/gat@v0.21.1
