@@ -82,5 +82,5 @@ abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
 
 # misc
 abbr -a n -f _na
-abbr --position anywhere df dealforest
+abbr --position anywhere deal dealforest
 
