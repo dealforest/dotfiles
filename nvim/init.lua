@@ -93,6 +93,10 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"lambdalisue/vim-manpager",
+		cmd = { "ASMANPAGER", "Man" },
+	},
 
 	-- Finder, file browser
 	{
