@@ -7,7 +7,7 @@ abbr -a src source
 abbr -a sc "source $FISH_CONFIG"
 
 alias ls eza
-abbr -a -- ls 'eza --icons'
+abbr -a -- ls 'eza --icons auto'
 abbr -a -- la 'eza --icons --git --time-style relative -al'
 abbr -a -- ll 'eza --icons --git --time-style relative -l'
 
