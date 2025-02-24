@@ -15,6 +15,8 @@ set blame-view-line-number = yes
 # generic key binds
 ########
 bind main o !hub browse -- commit/%(commit)
+bind main D !git diff %(commit)
+bind status D !git diff -- %(file)
 bind generic g move-first-line
 bind generic G move-last-line
 bind generic <Ctrl-f> move-page-down
@@ -96,6 +98,12 @@ bind refs xc !?git switch -c "%(prompt Enter new branch name: )" %(branch)
 bind refs xm !?git branch -m %(branch) "%(prompt Enter new branch name: )" 
 bind refs xp !?git push origin %(branch)
 bind refs xP !?git push --force origin %(branch)
+
+########
+# status key binds
+########
+bind status xd !?git clean -f -- %(file)
+bind status xD !?git clean -fd
 
 # bind refs xpull !?git pull "%(prompt Enter remote name: )" %(branch) --rebase
 # bind refs xpush !?git push "%(prompt Enter remote name: )" %(branch)

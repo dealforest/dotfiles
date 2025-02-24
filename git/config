@@ -5,20 +5,23 @@
 [include]
     path = ~/.config/git/config.local
 [core]
-    editor             = /usr/bin/vim
+    editor             = nvim
     excludesfile       = ~/.config/git/ignore
     precomposedunicode = true
 [color]
     ui = true
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+    difftool = true
+[difftool]
+    prompt = true
+[interactive]
+    diffFilter = delta --color-only
 [credential]
     helper = cache
-[diff]
-    tool = difftastic
-    external = difft
-[difftool]
-    prompt = false
-[pager]
-    difftool = true
 [alias]
     tr   = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
     logg = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d'
@@ -81,3 +84,11 @@
     token = !security find-internet-password -a dealforest -s github.com -l 'ghi token' -w
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+[delta]
+    dark = true
+    syntax-theme = GitHub
+    diff-so-fancy=true
+    keep-plus-minus-markers=true
+    side-by-side = true
+    hunk-header-style="omit"
+    line-numbers=true
