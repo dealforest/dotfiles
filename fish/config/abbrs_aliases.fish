@@ -38,6 +38,10 @@ abbr -a vc 'code (pwd)'
 abbr -a jn 'jupyter notebook'
 abbr -a jl 'jupyter lab'
 
+# aqua
+abbr -a -- ag 'aqua g -i'
+abbr -a -- ai 'aqua i -l'
+
 # docker
 abbr -a do docker container
 abbr -a dop "docker container ps"

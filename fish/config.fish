@@ -50,6 +50,9 @@ fish_add_path $HOME/.cache/.bun/bin
 ## deno
 fish_add_path $HOME/.deno/bin
 
+## volta
+fish_add_path $HOME/.volta/bin
+
 # go
 set -gx GOPATH $HOME/go
 fish_add_path $GOPATH/bin
