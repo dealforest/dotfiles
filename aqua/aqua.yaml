@@ -126,7 +126,7 @@ packages:
   - name: fastfetch-cli/fastfetch@2.37.0
   - name: sxyazi/yazi@v0.4.2
   - name: typst/typst@v0.12.0
-  - name: pnpm/pnpm@v10.4.1
+  - name: pnpm/pnpm@v10.5.0
   - name: nodejs/node@v23.8.0
   - name: tamasfe/taplo@0.9.3
   - name: jj-vcs/jj@v0.26.0
