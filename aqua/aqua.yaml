@@ -127,7 +127,7 @@ packages:
   - name: sxyazi/yazi@v0.4.2
   - name: typst/typst@v0.13.0
   - name: pnpm/pnpm@v10.5.2
-  - name: nodejs/node@v23.8.0
+  - name: nodejs/node@v23.9.0
   - name: tamasfe/taplo@0.9.3
   - name: jj-vcs/jj@v0.26.0
   - name: secretlint/secretlint@v9.2.0
