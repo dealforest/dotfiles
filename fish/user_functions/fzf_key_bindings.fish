@@ -94,6 +94,17 @@ function fzf_key_bindings
         commandline -f repaint
     end
 
+    function fzf-code-ghq -d "Efficient fish keybindinging for fzf with ghq"
+        # eval "ghq list | fzf --query (commandline)" | read -z select
+        eval "fd -t d -d 3 . \"$(ghq root)\" | sed \"s|$(ghq root)/||\" | fzf --query \"$(commandline)\"" | read -z select
+
+        if not test -z $select
+            eval "code (ghq root)/(builtin string trim "$select")"
+        end
+
+        commandline -f repaint
+    end
+
     function __fzfcmd
         set -q FZF_TMUX; or set FZF_TMUX 0
         set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
@@ -108,6 +119,7 @@ function fzf_key_bindings
     bind \cr fzf-history-widget
     bind \ec fzf-cd-widget
     bind \c] fzf-cd-ghq
+    bind \e\[91\;5u fzf-code-ghq
 
     if bind -M insert >/dev/null 2>&1
         bind -M insert \ct fzf-file-widget

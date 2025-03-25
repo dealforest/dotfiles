@@ -5,6 +5,7 @@ abbr -a nv nvim
 abbr -a bash 'bash --norc'
 abbr -a src source
 abbr -a sc "source $FISH_CONFIG"
+abbr -a vd "fd . ~/.ghq/github.com/dealforest/dotfiles/ | fzf | xargs nvim"
 
 alias ls eza
 abbr -a -- ls 'eza --icons auto'
