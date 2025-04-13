@@ -102,7 +102,7 @@ packages:
   - name: wakatime/wakatime-cli@v1.115.1
   - name: BurntSushi/xsv@0.13.0
   - name: LuaLS/lua-language-server@3.14.0
-  - name: astral-sh/ruff@0.11.4
+  - name: astral-sh/ruff@0.11.5
   - name: ducaale/xh@v0.24.0
   - name: xo/usql@v0.19.21
   - name: sharkdp/vivid@v0.10.1
