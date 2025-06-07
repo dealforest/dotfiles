@@ -127,7 +127,7 @@ packages:
   - name: nodejs/node@v24.1.0
   - name: tamasfe/taplo@0.10.0
   - name: jj-vcs/jj@v0.29.0
-  - name: secretlint/secretlint@v9.3.3
+  - name: secretlint/secretlint@v9.3.4
   - name: eza-community/eza@v0.21.4
   - name: koki-develop/gat@v0.24.0
   - name: volta-cli/volta@v2.0.2
