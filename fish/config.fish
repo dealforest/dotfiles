@@ -9,6 +9,7 @@ set -q XDG_CACHE_HOME || set -gx XDG_CACHE_HOME $HOME/.cache
 # define fish config paths
 set -g FISH_CONFIG_DIR $XDG_CONFIG_HOME/fish
 set -g FISH_CONFIG $FISH_CONFIG_DIR/config.fish
+set -g FISH_LOCAL_CONFIG $FISH_CONFIG_DIR/config_local.fish
 set -g FISH_CACHE_DIR $XDG_CACHE_HOME/fish
 
 # add user config
@@ -124,6 +125,10 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     set_color normal
 end
 source $CONFIG_CACHE
+
+if test -e "$FISH_LOCAL_CONFIG"
+    source $FISH_LOCAL_CONFIG
+end
 
 # neovim
 set -gx EDITOR nvim
