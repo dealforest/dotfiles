@@ -105,6 +105,58 @@ function fzf_key_bindings
         commandline -f repaint
     end
 
+    function fzf-launch-ghq -d "Pick a ghq repo; Enter = cd, Alt-Enter = choose action then run"
+        fzf-launch-dir (ghq root)
+    end
+
+    function fzf-launch-sandbox -d "Pick a sandbox; Enter = cd, Alt-Enter = choose action then run"
+        fzf-launch-dir ~/sandbox
+    end
+
+    function fzf-launch-dir \
+        --argument-names root_dir \
+        -d "Pick a root directory; Enter = cd, Alt-Enter = choose action then run"
+        set -l finder "fd -t d -d 3 . $root_dir | sed \"s|$root_dir/||\""
+
+        set -l key path
+        eval $finder \
+            | fzf  --reverse --height 40% \
+            --prompt="Repo> " \
+            --query (commandline) \
+            --expect=enter,alt-enter \
+            | read -z key path
+
+        test -z "$path"; and return
+
+        if test "$key" = alt-enter
+            set -l action (printf "%s\n" \
+                "claude code" cursor code lazygit "gh repo view -w" open \
+                | fzf --prompt="Action for $path> " --height 30% --reverse)
+
+            eval "cd $root_dir/$path"
+            switch $action
+                case claude code
+                    eval "claude code"
+                case cursor
+                    eval "cursor ."
+                case code
+                    eval "code ."
+                case lazygit
+                    eval "lazygit -p ."
+                case 'gh repo view -w'
+                    eval "gh repo view --web (basename -- $path)"
+                case open
+                    eval "open ."
+                case '*'
+                    return
+            end
+        else
+            eval "cd $root_dir/$path"
+        end
+
+        commandline -f repaint
+    end
+
     function __fzfcmd
         set -q FZF_TMUX; or set FZF_TMUX 0
         set -q FZF_TMUX_HEIGHT; or set FZF_TMUX_HEIGHT 40%
@@ -118,8 +170,8 @@ function fzf_key_bindings
     bind \ct fzf-file-widget
     bind \cr fzf-history-widget
     bind \ec fzf-cd-widget
-    bind \c] fzf-cd-ghq
-    bind \e\[91\;5u fzf-code-ghq
+    bind \c] fzf-launch-ghq
+    bind \e\[91\;5u fzf-launch-sandbox
 
     if bind -M insert >/dev/null 2>&1
         bind -M insert \ct fzf-file-widget
