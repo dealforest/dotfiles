@@ -11,6 +11,11 @@ XDG_DATA_HOME=$HOME/.local/share
 
 AQUA_VERSION=v3.1.1
 
+# https://github.com/aquaproj/aqua/issues/3744
+export AQUA_DISABLE_SLSA=true
+export AQUA_DISABLE_COSIGN=true
+
+
 os=$(uname -s | tr '[:upper:]' '[:lower:]')
 arch=$(uname -m)
 
@@ -53,22 +58,22 @@ if [ os == "linux" ] ; then
 fi
 
 # aqua
-# curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VERSION}/aqua-installer" | bash
+curl -sSfL "https://raw.githubusercontent.com/aquaproj/aqua-installer/${AQUA_VERSION}/aqua-installer" | bash
 
 # install deps via aqua
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
-cd /tmp
-  && aqua init
-  && aqua g -i rhysd/dotfiles
-  && aqua g -i x-motemen/ghq
-  && aqua i -l
-  && ghq get dealforest/dotfiles
-  && DOTFILES_REPO_PATH=$(ghq root)/$(ghq list | grep dealforest/dotfiles)
-  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua
-  && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml
-  && cd $AQUA_GLOBAL_CONFIG_DIR
-  && aqua install -l -a
+cd /tmp \
+  && aqua init \
+  && aqua g -i rhysd/dotfiles \
+  && aqua g -i x-motemen/ghq \
+  && aqua i -l \
+  && ghq get dealforest/dotfiles \
+  && DOTFILES_REPO_PATH=$(ghq root)/$(ghq list | grep dealforest/dotfiles) \
+  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua \
+  && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml \
+  && cd $AQUA_GLOBAL_CONFIG_DIR \
+  && aqua install -l -a \
   && dotfiles link
 
 # install homebrew
