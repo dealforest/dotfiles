@@ -126,7 +126,7 @@ packages:
   - name: pnpm/pnpm@v10.14.0
   - name: nodejs/node@v24.5.0
   - name: tamasfe/taplo@0.10.0
-  - name: jj-vcs/jj@v0.31.0
+  - name: jj-vcs/jj@v0.32.0
   - name: secretlint/secretlint@v10.2.2
   - name: eza-community/eza@v0.23.0
   - name: koki-develop/gat@v0.24.1
