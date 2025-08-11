@@ -132,4 +132,4 @@ packages:
   - name: koki-develop/gat@v0.24.1
   - name: volta-cli/volta@v2.0.2
   - name: mislav/hub@v2.14.2
-  - name: ollama/ollama@v0.11.3
+  - name: ollama/ollama@v0.11.4
