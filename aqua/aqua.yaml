@@ -123,7 +123,7 @@ packages:
   - name: fastfetch-cli/fastfetch@2.55.1
   - name: sxyazi/yazi@v25.5.31
   - name: typst/typst@v0.14.0
-  - name: pnpm/pnpm@v10.22.0
+  - name: pnpm/pnpm@v10.23.0
   - name: nodejs/node@v25.2.1
   - name: tamasfe/taplo@0.10.0
   - name: jj-vcs/jj@v0.35.0
