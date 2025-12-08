@@ -70,15 +70,15 @@ cd /tmp \
   && aqua i -l \
   && ghq get dealforest/dotfiles \
   && DOTFILES_REPO_PATH=$(ghq root)/$(ghq list | grep dealforest/dotfiles) \
-  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_DIR/aqua \
+  && AQUA_GLOBAL_CONFIG_DIR=$DOTFILES_REPO_PATH/aqua \
   && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml \
   && cd $AQUA_GLOBAL_CONFIG_DIR \
   && aqua install -l -a \
-  && dotfiles link
+  && cd $DOTFILES_REPO_PATH && dotfiles link
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-source $DOTFILES_DIR/bash/.bash_profile
+source $DOTFILES_REPO_PATH/bash/.bash_profile
 
 brew install fish curl
 

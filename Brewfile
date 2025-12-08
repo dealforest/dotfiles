@@ -113,7 +113,6 @@ mas "TestFlight", id: 899247664
 mas "The Unarchiver", id: 425424353
 mas "Uninstaller sensei", id: 1373706803
 mas "Xcode", id: 497799835
-whalebrew "directory"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "ms-vscode-remote.remote-containers"
