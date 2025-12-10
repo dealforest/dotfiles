@@ -52,7 +52,7 @@ packages:
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.3
   - name: oven-sh/bun@bun-v1.3.4
-  - name: wader/fq@v0.15.1
+  - name: wader/fq@v0.16.0
   - name: planetscale/cli@v0.266.0
   - name: supabase/cli@v2.65.5
   - name: hadolint/hadolint@v2.14.0
