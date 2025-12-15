@@ -122,7 +122,7 @@ packages:
   - name: sheepla/srss@v0.1.0
   - name: fastfetch-cli/fastfetch@2.56.0
   - name: sxyazi/yazi@v25.5.31
-  - name: typst/typst@v0.14.1
+  - name: typst/typst@v0.14.2
   - name: pnpm/pnpm@v10.25.0
   - name: nodejs/node@v25.2.1
   - name: tamasfe/taplo@0.10.0
