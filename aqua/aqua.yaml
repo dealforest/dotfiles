@@ -51,7 +51,7 @@ packages:
   - name: dandavison/delta@0.18.2
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.3
-  - name: oven-sh/bun@bun-v1.3.4
+  - name: oven-sh/bun@bun-v1.3.5
   - name: wader/fq@v0.16.0
   - name: planetscale/cli@v0.268.0
   - name: supabase/cli@v2.67.1
