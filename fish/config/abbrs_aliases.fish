@@ -29,7 +29,7 @@ abbr -a rr 'rm -r'
 abbr -a rf 'rm -rf'
 abbr -a mkd 'mkdir -p'
 abbr -a mkdir 'mkdir -p'
-abbr -a o open
+abbr -a o 'open .'
 
 abbr -a br brew
 abbr -a bri 'brew install'
@@ -85,3 +85,6 @@ abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
 abbr -a n -f _na
 abbr --position anywhere deal dealforest
 
+# claude code
+abbr -a -- cc 'claude code'
+abbr -a -- ccd 'claude code --dangerously-skip-permissions'
