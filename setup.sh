@@ -76,6 +76,10 @@ cd /tmp \
   && aqua install -l -a \
   && cd $DOTFILES_REPO_PATH && dotfiles link
 
+# mise install tools
+echo "Installing mise tools..."
+fish -c "~/.local/bin/mise install -y"
+
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 source $DOTFILES_REPO_PATH/bash/.bash_profile
