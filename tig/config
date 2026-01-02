@@ -35,7 +35,7 @@ bind main xo !hub browse -- commit/%(commit)
 bind main xt !?git tag "%(prompt Enter new tag name: )" %(commit)
 bind main xT !?git tag -d "%(tag)"
 bind main xr !git rebase --autosquash -i %(commit)
-bind main xd !?git diff %(branch) %(commit) 
+bind main xd !npx difit %(commit)
 bind main xa !?git commit --amend
 bind main xf !?git commit --fixup %(commit)
 bind main xF !?git commit --squash %(commit)
@@ -104,6 +104,7 @@ bind refs xP !?git push --force origin %(branch)
 ########
 bind status xd !?git clean -f -- %(file)
 bind status xD !?git clean -fd
+bind status V !nvim %(file)
 
 # bind refs xpull !?git pull "%(prompt Enter remote name: )" %(branch) --rebase
 # bind refs xpush !?git push "%(prompt Enter remote name: )" %(branch)
