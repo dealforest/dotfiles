@@ -96,7 +96,6 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
 
     # xcode
     echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
-    echo "set -gx SDKROOT $(ensure_installed xcrun --sdk macosx --show-sdk-path)" >>$CONFIG_CACHE
 
     # ruby
     echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
