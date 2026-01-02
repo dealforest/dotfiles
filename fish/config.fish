@@ -14,6 +14,13 @@ set -g FISH_CACHE_DIR $XDG_CACHE_HOME/fish
 
 # add user config
 set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
+
+# mise initialization (before loading config/*.fish)
+if command -v mise &> /dev/null
+    mise activate fish | source
+    fish_add_path --prepend --global ~/.local/share/mise/shims
+end
+
 # function load_user_config
 for file in $FISH_CONFIG_DIR/config/*.fish
     source $file &
@@ -44,15 +51,6 @@ set -gx CCACHE_DIR $HOME/.ccache
 fish_add_path /opt/homebrew/bin
 
 # js/ts
-## bun
-fish_add_path $HOME/.bun/bin
-fish_add_path $HOME/.cache/.bun/bin
-
-## deno
-fish_add_path $HOME/.deno/bin
-
-## volta
-fish_add_path $HOME/.volta/bin
 
 # go
 set -gx GOPATH $HOME/go
@@ -65,9 +63,7 @@ fish_add_path $HOME/.nimble/bin
 fish_add_path $HOME/zig
 
 # python
-fish_add_path $HOME/.poetry/bin
 # set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
-set -gx PYENV_ROOT $HOME/.pyenv
 set -gx BETTER_EXCEPTIONS 1
 ## codon
 fish_add_path $HOME/.codon/bin

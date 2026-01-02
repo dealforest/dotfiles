@@ -7,5 +7,6 @@
   "zshenv": "~/.zshenv",
   "git": "~/.config/git",
   "tmux": "~/.config/tmux",
+  "mise": "~/.config/mise",
   "nvim": "~/.config/nvim"
 }

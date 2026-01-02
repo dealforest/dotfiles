@@ -32,12 +32,12 @@ fi
 
 function export_path_if_exists { [[ -d "$1" ]] && export PATH="$1:$PATH" }
 
+# mise
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
+
 export_path_if_exists "$GOPATH/bin"
-export_path_if_exists "$HOME/.rbenv/shims" && eval "$(rbenv init --no-rehash - zsh)"
-export_path_if_exists "$HOME/.nodenv/shims" && eval "$(nodenv init --no-rehash -)"
-export_path_if_exists "$HOME/.pyenv/bin" && eval "$(pyenv init --no-rehash -)"
-export_path_if_exists "$HOME/.plenv/bin" && eval "$(plenv init -)"
-export_path_if_exists "$HOME/.poetry/bin" && source $HOME/.poetry/env
 # export_path_if_exists "$HOME/miniforge3/bin" && eval "conda activate python3.8"
 export_path_if_exists /opt/homebrew/share/git-core/contrib/workdir
 export_path_if_exists /opt/homebrew/share/git-core/contrib/diff-highlight
@@ -64,10 +64,6 @@ if type hub > /dev/null; then
   eval "$(hub alias -s zsh)"
 fi
 
-if type hub > /dev/null; then
-  export_path_if_exists "$HOME/.rbenv/shims" && eval "$(rbenv init --no-rehash - zsh)"
-fi
-
 if [ -d "$HOME/Library/Android/sdk" ]; then
     export ANDROID_HOME="$HOME/Library/Android/sdk"
     export PATH="$HOME/Library/Android/sdk/ndk-bundle:$PATH"
@@ -76,12 +72,6 @@ fi
 
 if [ `uname` = 'Darwin' ]; then
     export SETUP_SH_VMARGS=-Dfile.encoding=UTF8
-    if type rbenv > /dev/null; then
-      eval "$(rbenv init --no-rehash - zsh)"
-    fi
-    if type nodenv > /dev/null; then
-      eval "$(nodenv init --no-rehash -)"
-    fi
 fi
 
 # -------------------------------------------------------------------------
@@ -143,18 +133,6 @@ alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
 # -------------------------------------------------------------------------
 # package alias
 # -------------------------------------------------------------------------
-if [ -f "$(which rbenv)" ]; then
-    alias be='bundle exec'
-    alias bep='bundle exec pry'
-    alias bepr='bundle exec pry-remote'
-    alias bo='bundle open'
-    alias bf='bundle exec foreman start'
-fi
-
-if [ -f "$(which pyenv)" ]; then
-    alias pr='pipenv run'
-fi
-
 if [ -f "$(which tmux)" ]; then
     alias tm='tmux new-session -s'
     alias tmr='tmux attach -t'
