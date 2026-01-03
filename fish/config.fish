@@ -97,10 +97,6 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     # xcode
     echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
 
-    # ruby
-    echo "fish_add_path $(ensure_installed brew --prefix)/opt/ruby/bin" >>$CONFIG_CACHE
-    echo "fish_add_path $(ensure_installed gem environment gemdir)/bin" >>$CONFIG_CACHE
-
     # tools
     ensure_installed direnv hook fish >>$CONFIG_CACHE
     ensure_installed zoxide init fish >>$CONFIG_CACHE
