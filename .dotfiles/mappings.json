@@ -6,5 +6,6 @@
   "git": "~/.config/git",
   "tmux": "~/.config/tmux",
   "mise": "~/.config/mise",
-  "nvim": "~/.config/nvim"
+  "nvim": "~/.config/nvim",
+  "mmcp/mmcp.json": "~/.mmcp.json"
 }
