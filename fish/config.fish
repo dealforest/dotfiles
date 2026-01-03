@@ -15,12 +15,6 @@ set -g FISH_CACHE_DIR $XDG_CACHE_HOME/fish
 # add user config
 set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
 
-# mise initialization (before loading config/*.fish)
-if command -v mise &> /dev/null
-    mise activate fish | source
-    fish_add_path --prepend --global ~/.local/share/mise/shims
-end
-
 # function load_user_config
 for file in $FISH_CONFIG_DIR/config/*.fish
     source $file &
