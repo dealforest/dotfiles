@@ -1,10 +1,8 @@
 {
   "aqua": "~/.config/aquaproj-aqua",
-  "bash/.bashrc": "~/.bashrc",
-  "bash/.bash_profile": "~/.bash_profile",
+  "bash": "~/.config/bash",
   "fish": "~/.config/fish",
   "zsh": "~/.config/zsh",
-  "zshenv": "~/.zshenv",
   "git": "~/.config/git",
   "tmux": "~/.config/tmux",
   "mise": "~/.config/mise",
