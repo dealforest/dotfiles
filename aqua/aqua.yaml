@@ -103,7 +103,7 @@ packages:
   - name: sharkdp/vivid@v0.10.1
   - name: ynqa/jnv@v0.6.1
   - name: charmbracelet/freeze@v0.2.2
-  - name: sqls-server/sqls@v0.2.32
+  - name: sqls-server/sqls@v0.2.45
   - name: ClementTsang/bottom@0.12.3
   - name: graelo/pumas@v0.3.3
   - name: sachaos/viddy@v1.3.0
