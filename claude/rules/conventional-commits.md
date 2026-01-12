@@ -5,7 +5,7 @@ Git コミット作成時は Conventional Commits 仕様に従う。
 ## フォーマット
 
 ```
-<type>[optional scope]: <description>
+<type>: <description>
 
 [optional body]
 
@@ -26,20 +26,6 @@ Git コミット作成時は Conventional Commits 仕様に従う。
 | build | ビルドシステム・依存関係 |
 | ci | CI/CD 設定 |
 | chore | メンテナンスタスク |
-
-## Scope
-
-scope は任意で、変更の影響範囲を示す。
-
-```
-feat(auth): OAuth2 ログインサポートを追加
-fix(ui): ボタンの配置問題を解決
-refactor(api): エラーハンドリングを簡素化
-```
-
-よく使う scope: `auth`, `ui`, `api`, `db`, `config`, `deps`, `core`
-
-**注意:** `claude` のような汎用的なツール名を scope に使用しない。より具体的な機能名（`rules`, `plugins`, `hooks` など）を使用する。
 
 ## Body
 
@@ -62,12 +48,10 @@ fix: ユーザーセッションの競合状態を防止
 
 破壊的変更は互換性のない API 変更を示す。2つの方法がある:
 
-### 1. type/scope の後に `!` を追加
+### 1. type の後に `!` を追加
 
 ```
 feat!: 非推奨の API エンドポイントを削除
-
-feat(api)!: 認証フローを変更
 ```
 
 ### 2. footer に `BREAKING CHANGE:` を追加
@@ -94,7 +78,7 @@ footer はメタデータを提供。body から空行で区切る。
 | `Reviewed-by: Name` | コードレビュアー |
 
 ```
-feat(auth): 二要素認証を追加
+feat: 二要素認証を追加
 
 セキュリティ強化のため TOTP ベースの 2FA を実装。
 
@@ -117,7 +101,7 @@ Conventional Commits は Semantic Versioning (SemVer) と対応:
 以前のコミットを取り消す場合、`revert:` タイプと元のコミットの subject を使用。
 
 ```
-revert: feat(auth): OAuth2 ログインサポートを追加
+revert: feat: OAuth2 ログインサポートを追加
 
 コミット abc1234 を取り消し。
 理由: OAuth プロバイダーが API を非推奨化。
@@ -141,17 +125,10 @@ fix: アプリ起動時のクラッシュを解決
 docs: README にインストール手順を追加
 ```
 
-### scope 付き
-
-```
-feat(video): 2フレームからの生成を追加
-fix(auth): 期限切れトークンを適切に処理
-```
-
 ### body と footer 付き
 
 ```
-fix(ui): iOS でのスクリーンキャプチャ防止を遅延
+fix: iOS でのスクリーンキャプチャ防止を遅延
 
 usePreventScreenCapture() がネイティブビュー階層の準備前に
 呼び出され、起動時に EXC_BAD_ACCESS クラッシュが発生。
@@ -166,7 +143,7 @@ Fixes #789
 ### 破壊的変更
 
 ```
-feat(api)!: 認証レスポンス形式を変更
+feat!: 認証レスポンス形式を変更
 
 BREAKING CHANGE: /auth/login エンドポイントは
 { accessToken, refreshToken } の代わりに { token, expiresAt } を返す。

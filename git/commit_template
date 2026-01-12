@@ -3,14 +3,14 @@
 #docs: 
 #style: 
 #refactor: 
-#perf:
+#perf: 
 #test: 
 #build: 
 #ci: 
-#chore:
+#chore: 
 
 # ==== Conventional Commits Format ====
-# <type>[optional scope]: <description>
+# <type>: <description>
 #
 # [optional body]
 #
@@ -47,5 +47,5 @@
 
 # ==== Examples ====
 # feat: Add video generation feature
-# fix(auth): Handle expired token gracefully
+# fix: Handle expired token gracefully
 # feat!: Change API response format

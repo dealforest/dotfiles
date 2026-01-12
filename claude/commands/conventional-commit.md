@@ -13,10 +13,9 @@ allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git
 ## ルール
 
 プロジェクトのルールに従うこと:
-1. Conventional Commits 形式を使用: `type(scope): description`
+1. Conventional Commits 形式を使用: `type: description`
 2. 1コミット1タイプ - fix, feat, docs などを分ける
 3. 小さく論理的な単位でコミット
-4. `claude` のような汎用的なツール名を scope に使用しない
 
 ## タスク
 
@@ -29,7 +28,6 @@ allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git
 
 2. **コミットの計画**: 各グループに対して
    - 適切な Conventional Commits タイプを決定
-   - 具体的な scope を選択（汎用的な名前は避ける）
    - 簡潔な説明を作成
 
 3. **コミットの実行**: 各計画に対して
