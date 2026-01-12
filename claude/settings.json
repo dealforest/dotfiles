@@ -41,18 +41,6 @@
       "Bash(npm remove:*)"
     ]
   },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/scripts/sync-plugins.sh"
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
