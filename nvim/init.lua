@@ -82,8 +82,18 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
+			-- tarball展開エラー回避のためgit cloneを使用
+			require("nvim-treesitter.install").prefer_git = true
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = "all",
+				ensure_installed = {
+					"lua", "vim", "vimdoc", "query",
+					"markdown", "markdown_inline",
+					"bash", "fish",
+					"json", "yaml", "toml",
+					"html", "css", "javascript", "typescript",
+					"python", "ruby", "go", "rust", "swift",
+					"gitcommit", "gitignore", "diff",
+				},
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
