@@ -5,5 +5,6 @@
   "jj": "~/.config/jj",
   "tig": "~/.config/tig",
   "lazygit": "~/.config/lazygit",
+  "claude": "~/.claude",
   "secretlint/.secretlintrc.json": "~/.secretlintrc.json"
 }

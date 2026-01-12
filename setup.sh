@@ -8,6 +8,7 @@ DOTFILES_VERSION=v0.2.0
 XDG_CONFIG_HOME=$HOME/.config
 XDG_CACHE_HOME=$HOME/.cache
 XDG_DATA_HOME=$HOME/.local/share
+GHQ_ROOT=$HOME/.ghq
 
 AQUA_VERSION=v3.1.1
 
@@ -74,7 +75,9 @@ cd /tmp \
   && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml \
   && cd $AQUA_GLOBAL_CONFIG_DIR \
   && aqua install -l -a \
-  && cd $DOTFILES_REPO_PATH && dotfiles link
+  && cd $DOTFILES_REPO_PATH \
+  && dotfiles clean \
+  && dotfiles link
 
 # mise install tools
 echo "Installing mise tools..."
