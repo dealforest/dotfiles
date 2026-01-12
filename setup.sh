@@ -75,7 +75,9 @@ cd /tmp \
   && AQUA_GLOBAL_CONFIG=$AQUA_GLOBAL_CONFIG_DIR/aqua.toml \
   && cd $AQUA_GLOBAL_CONFIG_DIR \
   && aqua install -l -a \
-  && cd $DOTFILES_REPO_PATH && dotfiles link
+  && cd $DOTFILES_REPO_PATH \
+  && dotfiles clean \
+  && dotfiles link
 
 # mise install tools
 echo "Installing mise tools..."
