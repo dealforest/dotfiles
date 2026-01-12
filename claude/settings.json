@@ -60,5 +60,9 @@
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/context-bar.sh"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
