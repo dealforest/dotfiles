@@ -1,0 +1,64 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(rg:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(diff:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:~/**)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker compose exec:*)",
+      "Bash(docker compose logs:*)",
+      "Write(~/**)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm:/)",
+      "Bash(rm:/*)",
+      "Bash(rm:~)",
+      "Bash(rm:~/*)",
+      "Bash(mkdir:/**)",
+      "Read(.env*)",
+      "Read(id_ed25519)",
+      "Read(id_rsa)",
+      "Read(**/*token*)",
+      "Write(/**)",
+      "Write(**/secrets/**)",
+      "Write(.env*)",
+      "NotebookEdit",
+      "NotebookRead",
+      "TodoWrite"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/sync-plugins.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/scripts/context-bar.sh"
+  }
+}
