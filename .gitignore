@@ -1,1 +1,17 @@
 fish/config_local.fish
+
+# Claude Code - ignore auto-generated files
+claude/cache/
+claude/debug/
+claude/file-history/
+claude/history.jsonl
+claude/ide/
+claude/plans/
+claude/plugins/
+claude/projects/
+claude/session-env/
+claude/shell-snapshots/
+claude/stats-cache.json
+claude/statsig/
+claude/telemetry/
+claude/todos/
