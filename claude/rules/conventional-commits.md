@@ -1,8 +1,8 @@
 # Conventional Commits
 
-When creating git commits, follow the Conventional Commits specification.
+Git コミット作成時は Conventional Commits 仕様に従う。
 
-## Format
+## フォーマット
 
 ```
 <type>[optional scope]: <description>
@@ -12,164 +12,164 @@ When creating git commits, follow the Conventional Commits specification.
 [optional footer(s)]
 ```
 
-## Types
+## タイプ
 
-| Type | Description |
-|------|-------------|
-| feat | New feature |
-| fix | Bug fix |
-| docs | Documentation changes |
-| style | Code style changes (formatting, no logic change) |
-| refactor | Code refactoring (no feature/fix) |
-| perf | Performance improvement |
-| test | Adding or updating tests |
-| build | Build system or dependencies |
-| ci | CI/CD configuration |
-| chore | Maintenance tasks |
+| Type | 説明 |
+|------|------|
+| feat | 新機能 |
+| fix | バグ修正 |
+| docs | ドキュメント変更 |
+| style | コードスタイル変更（フォーマット、ロジック変更なし） |
+| refactor | リファクタリング（機能追加/修正なし） |
+| perf | パフォーマンス改善 |
+| test | テストの追加・更新 |
+| build | ビルドシステム・依存関係 |
+| ci | CI/CD 設定 |
+| chore | メンテナンスタスク |
 
 ## Scope
 
-Scope is optional and describes the section of the codebase affected by the change.
+scope は任意で、変更の影響範囲を示す。
 
 ```
-feat(auth): Add OAuth2 login support
-fix(ui): Resolve button alignment issue
-refactor(api): Simplify error handling
+feat(auth): OAuth2 ログインサポートを追加
+fix(ui): ボタンの配置問題を解決
+refactor(api): エラーハンドリングを簡素化
 ```
 
-Common scopes: `auth`, `ui`, `api`, `db`, `config`, `deps`, `core`
+よく使う scope: `auth`, `ui`, `api`, `db`, `config`, `deps`, `core`
 
-**Note:** Do not use generic tool names like `claude` as scope. Use more specific feature names (e.g., `rules`, `plugins`, `hooks`).
+**注意:** `claude` のような汎用的なツール名を scope に使用しない。より具体的な機能名（`rules`, `plugins`, `hooks` など）を使用する。
 
 ## Body
 
-The body provides additional context. It must be separated from the description by a blank line.
+body は追加のコンテキストを提供。description から空行で区切る。
 
-- Use the body to explain **what** and **why**, not how
-- Can contain multiple paragraphs
-- Wrap lines at 72 characters
+- **何を**、**なぜ** 変更したかを説明（方法ではなく）
+- 複数段落可
+- 72文字で折り返し
 
 ```
-fix: Prevent race condition in user session
+fix: ユーザーセッションの競合状態を防止
 
-The session was being accessed before initialization completed.
-This caused intermittent crashes on app startup.
+初期化完了前にセッションにアクセスしていた。
+これによりアプリ起動時に断続的なクラッシュが発生。
 
-Added a mutex lock to ensure thread-safe access.
+スレッドセーフなアクセスのためにミューテックスロックを追加。
 ```
 
 ## Breaking Changes
 
-Breaking changes indicate incompatible API changes. There are two ways to indicate a breaking change:
+破壊的変更は互換性のない API 変更を示す。2つの方法がある:
 
-### 1. Add `!` after type/scope
-
-```
-feat!: Remove deprecated API endpoints
-
-feat(api)!: Change authentication flow
-```
-
-### 2. Add `BREAKING CHANGE:` in footer
+### 1. type/scope の後に `!` を追加
 
 ```
-feat: Refactor user authentication
+feat!: 非推奨の API エンドポイントを削除
 
-BREAKING CHANGE: The login endpoint now requires email instead of username.
-Old: POST /login { username, password }
-New: POST /login { email, password }
+feat(api)!: 認証フローを変更
 ```
 
-Both methods can be combined. `BREAKING-CHANGE` (hyphenated) is also valid.
+### 2. footer に `BREAKING CHANGE:` を追加
+
+```
+feat: ユーザー認証をリファクタリング
+
+BREAKING CHANGE: ログインエンドポイントはユーザー名ではなくメールを必要とする。
+旧: POST /login { username, password }
+新: POST /login { email, password }
+```
+
+両方を組み合わせることも可能。`BREAKING-CHANGE`（ハイフン）も有効。
 
 ## Footers
 
-Footers provide metadata and must be separated from the body by a blank line.
+footer はメタデータを提供。body から空行で区切る。
 
-| Footer | Description |
-|--------|-------------|
-| `BREAKING CHANGE:` | Describes breaking changes |
-| `Refs #123` | References related issues |
-| `Fixes #456` | Closes an issue when merged |
-| `Reviewed-by: Name` | Code reviewer |
+| Footer | 説明 |
+|--------|------|
+| `BREAKING CHANGE:` | 破壊的変更の説明 |
+| `Refs #123` | 関連 issue への参照 |
+| `Fixes #456` | マージ時に issue をクローズ |
+| `Reviewed-by: Name` | コードレビュアー |
 
 ```
-feat(auth): Add two-factor authentication
+feat(auth): 二要素認証を追加
 
-Implements TOTP-based 2FA for enhanced security.
+セキュリティ強化のため TOTP ベースの 2FA を実装。
 
 Fixes #234
 Refs #123
 ```
 
-## Semantic Versioning
+## セマンティックバージョニング
 
-Conventional Commits correlate with Semantic Versioning (SemVer):
+Conventional Commits は Semantic Versioning (SemVer) と対応:
 
-| Commit Type | Version Bump | Example |
-|-------------|--------------|---------|
+| コミットタイプ | バージョンバンプ | 例 |
+|---------------|-----------------|-----|
 | `fix` | PATCH (0.0.x) | 1.0.0 → 1.0.1 |
 | `feat` | MINOR (0.x.0) | 1.0.0 → 1.1.0 |
 | `BREAKING CHANGE` | MAJOR (x.0.0) | 1.0.0 → 2.0.0 |
 
 ## Revert
 
-When reverting a previous commit, use `revert:` type with the original commit's subject.
+以前のコミットを取り消す場合、`revert:` タイプと元のコミットの subject を使用。
 
 ```
-revert: feat(auth): Add OAuth2 login support
+revert: feat(auth): OAuth2 ログインサポートを追加
 
-This reverts commit abc1234.
-Reason: OAuth provider deprecated their API.
+コミット abc1234 を取り消し。
+理由: OAuth プロバイダーが API を非推奨化。
 ```
 
-## Rules
+## ルール
 
-1. Type is required and must be lowercase
-2. Description must be in imperative mood ("Add feature" not "Added feature")
-3. Description should not end with a period
-4. Keep the first line under 72 characters
-5. Use body for detailed explanation if needed
+1. type は必須で小文字
+2. description は命令形（「追加する」ではなく「追加」）
+3. description の末尾にピリオドを付けない
+4. 1行目は72文字以内
+5. 必要に応じて body で詳細を説明
 
-## Examples
+## 例
 
-### Simple (description only)
-
-```
-feat: Add video generation feature
-fix: Resolve crash on app startup
-docs: Update README with installation steps
-```
-
-### With scope
+### シンプル（description のみ）
 
 ```
-feat(video): Add generation from two frames
-fix(auth): Handle expired token gracefully
+feat: 動画生成機能を追加
+fix: アプリ起動時のクラッシュを解決
+docs: README にインストール手順を追加
 ```
 
-### With body and footer
+### scope 付き
 
 ```
-fix(ui): Defer screen capture prevention on iOS
+feat(video): 2フレームからの生成を追加
+fix(auth): 期限切れトークンを適切に処理
+```
 
-usePreventScreenCapture() was called before the native view hierarchy
-was ready, causing EXC_BAD_ACCESS crash on startup.
+### body と footer 付き
 
-- Move prevention to useEffect
-- Add 500ms delay for iOS
-- Add error handling
+```
+fix(ui): iOS でのスクリーンキャプチャ防止を遅延
+
+usePreventScreenCapture() がネイティブビュー階層の準備前に
+呼び出され、起動時に EXC_BAD_ACCESS クラッシュが発生。
+
+- prevention を useEffect に移動
+- iOS 用に 500ms の遅延を追加
+- エラーハンドリングを追加
 
 Fixes #789
 ```
 
-### Breaking change
+### 破壊的変更
 
 ```
-feat(api)!: Change authentication response format
+feat(api)!: 認証レスポンス形式を変更
 
-BREAKING CHANGE: The /auth/login endpoint now returns
-{ token, expiresAt } instead of { accessToken, refreshToken }.
+BREAKING CHANGE: /auth/login エンドポイントは
+{ accessToken, refreshToken } の代わりに { token, expiresAt } を返す。
 
-Migration: Update client code to use the new token field.
+移行: クライアントコードを新しい token フィールドを使用するよう更新。
 ```

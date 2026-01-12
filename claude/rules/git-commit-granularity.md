@@ -1,40 +1,40 @@
-# Git Commit Granularity
+# Git コミットの粒度
 
-## Principle
+## 原則
 
-Small commits are easier to manage. You can always squash or reorder them later, but splitting a large commit is difficult.
+小さなコミットは管理しやすい。後からスカッシュや並び替えはできるが、大きなコミットを分割するのは難しい。
 
-## Rules
+## ルール
 
-1. **One type per commit** - Each commit should have only one Conventional Commits type
-   - Bad: One commit with both bug fix and new feature
-   - Good: Separate commits for fix and feat
+1. **1コミット1タイプ** - 各コミットは1つの Conventional Commits タイプのみ
+   - 悪い例: バグ修正と新機能が1つのコミットに
+   - 良い例: fix と feat を別々のコミットに
 
-2. **When in doubt, commit small** - Make smaller commits and consolidate later if needed
+2. **迷ったら小さく** - 小さなコミットを作成し、必要に応じて後で統合
 
-3. **Logical units** - Each commit should represent one logical change
+3. **論理的な単位** - 各コミットは1つの論理的な変更を表す
 
-## Why Small Commits?
+## なぜ小さなコミット？
 
-- Easy to squash multiple commits into one (`git rebase -i`)
-- Easy to reorder commits (`git rebase -i`)
-- Easy to cherry-pick specific changes
-- Easy to revert specific changes
-- Difficult to split a large commit into smaller ones
+- 複数のコミットを1つにスカッシュするのは簡単 (`git rebase -i`)
+- コミットの並び替えは簡単 (`git rebase -i`)
+- 特定の変更をチェリーピックするのは簡単
+- 特定の変更を取り消すのは簡単
+- 大きなコミットを小さく分割するのは難しい
 
-## Examples
+## 例
 
-### Good (small, focused commits)
-
-```
-feat(auth): Add login form component
-feat(auth): Add login API call
-feat(auth): Add login error handling
-test(auth): Add login tests
-```
-
-### Bad (mixed types, too large)
+### 良い例（小さく焦点を絞ったコミット）
 
 ```
-feat(auth): Add login feature with tests and bug fixes
+feat(auth): ログインフォームコンポーネントを追加
+feat(auth): ログイン API 呼び出しを追加
+feat(auth): ログインエラーハンドリングを追加
+test(auth): ログインテストを追加
+```
+
+### 悪い例（タイプ混在、大きすぎ）
+
+```
+feat(auth): テストとバグ修正を含むログイン機能を追加
 ```

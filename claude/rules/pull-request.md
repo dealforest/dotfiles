@@ -1,5 +1,5 @@
 # Pull Request
 
-## Language
+## 言語
 
-Unless otherwise specified, write PR descriptions in Japanese.
+特に指定がない限り、PR の説明文は日本語で作成する。

@@ -1,20 +1,20 @@
 ---
-description: Push committed changes to remote
+description: コミット済みの変更をリモートにプッシュ
 allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*)
 ---
 
-## Context
+## コンテキスト
 
-- Current branch: !`git branch --show-current`
-- Commits ahead of remote: !`git log --oneline @{u}..HEAD 2>/dev/null || echo "No upstream branch"`
+- 現在のブランチ: !`git branch --show-current`
+- リモートより先のコミット: !`git log --oneline @{u}..HEAD 2>/dev/null || echo "upstream ブランチなし"`
 - Git status: !`git status --short`
 
-## Your task
+## タスク
 
-Push committed changes to the remote repository.
+コミット済みの変更をリモートリポジトリにプッシュする。
 
-1. Check if there are commits to push
-2. If there are unpushed commits, push to remote
-3. Report the result
+1. プッシュすべきコミットがあるか確認
+2. 未プッシュのコミットがあればリモートにプッシュ
+3. 結果を報告
 
-Do not commit any changes. Only push existing commits.
+変更のコミットは行わない。既存のコミットのプッシュのみ。
