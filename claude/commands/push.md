@@ -1,6 +1,6 @@
 ---
 description: コミット済みの変更をリモートにプッシュ
-allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*)
+allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git remote:*), Bash(gh pr view:*)
 ---
 
 ## コンテキスト
@@ -16,5 +16,6 @@ allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*)
 1. プッシュすべきコミットがあるか確認
 2. 未プッシュのコミットがあればリモートにプッシュ
 3. 結果を報告
+4. リモートリポジトリの URL を表示（PR がある場合は PR の URL も）
 
 変更のコミットは行わない。既存のコミットのプッシュのみ。
