@@ -39,6 +39,8 @@ refactor(api): Simplify error handling
 
 Common scopes: `auth`, `ui`, `api`, `db`, `config`, `deps`, `core`
 
+**Note:** Do not use generic tool names like `claude` as scope. Use more specific feature names (e.g., `rules`, `plugins`, `hooks`).
+
 ## Body
 
 The body provides additional context. It must be separated from the description by a blank line.
