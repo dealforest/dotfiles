@@ -161,34 +161,40 @@ require("lazy").setup({
 	},
 
 	-- LSP
-	"neovim/nvim-lspconfig",
 	{ "williamboman/mason.nvim", config = true },
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			require("mason-lspconfig").setup_handlers({
-				function(server)
-					local options = {
-						capabilities = require("cmp_nvim_lsp").default_capabilities(),
-						on_attach = function(_, buf)
-							local buf_opts = { noremap = true, silent = true, buffer = buf }
-							vim.keymap.set("n", "gs", ":sp | lua vim.lsp.buf.definition()<CR>", buf_opts)
-							vim.keymap.set("n", "gv", ":vs | lua vim.lsp.buf.definition()<CR>", buf_opts)
-							vim.keymap.set("n", "gr", vim.lsp.buf.references, buf_opts)
-							vim.keymap.set("n", "K", vim.lsp.buf.hover, buf_opts)
-							vim.keymap.set("n", "<Space>f", function()
-								vim.lsp.buf.format({ async = true })
-							end, buf_opts)
-						end,
-					}
-
-					-- Suppress "Undefined global `vim`" warning
-					if server == "sumneko_lua" then
-						options.settings = { Lua = { diagnostics = { globals = { "vim" } } } }
-					end
-
-					require("lspconfig")[server].setup(options)
+			require("mason-lspconfig").setup({
+				automatic_enable = true,
+			})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			-- グローバルなLSP設定
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local buf = args.buf
+					local buf_opts = { noremap = true, silent = true, buffer = buf }
+					vim.keymap.set("n", "gs", ":sp | lua vim.lsp.buf.definition()<CR>", buf_opts)
+					vim.keymap.set("n", "gv", ":vs | lua vim.lsp.buf.definition()<CR>", buf_opts)
+					vim.keymap.set("n", "gr", vim.lsp.buf.references, buf_opts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, buf_opts)
+					vim.keymap.set("n", "<Space>f", function()
+						vim.lsp.buf.format({ async = true })
+					end, buf_opts)
 				end,
+			})
+
+			-- lua_ls の設定 (vim警告抑制)
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = { globals = { "vim" } }
+					}
+				}
 			})
 		end,
 	},
