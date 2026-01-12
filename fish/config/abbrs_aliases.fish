@@ -88,3 +88,21 @@ abbr --position anywhere deal dealforest
 # claude code
 abbr -a -- cc 'claude code'
 abbr -a -- ccd 'claude code --dangerously-skip-permissions'
+
+# tmux
+abbr -a tm 'tmux new -s'
+abbr -a tma 'tmux attach'
+abbr -a tml 'tmux ls'
+abbr -a tmk 'tmux kill-server'
+
+function _tmc
+    set -l session '(basename (pwd))'
+    set -l sep '\\;'
+    echo "tmux new-session -s $session" \
+        "$sep split-window -v -p 50" \
+        "$sep split-window -h -t 0" \
+        "$sep send-keys -t 0 'tig' C-m" \
+        "$sep send-keys -t 2 'claude' C-m" \
+        "$sep select-pane -t 2"
+end
+abbr -a tmc -f _tmc
