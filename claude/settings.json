@@ -55,10 +55,15 @@
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
   },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/context-bar.sh"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
