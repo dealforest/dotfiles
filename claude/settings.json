@@ -61,7 +61,7 @@
       "*.npmjs.org",
       "registry.yarnpkg.com"
     ],
-    "allowUnsandboxedCommands": false,
+    "allowUnsandboxedCommands": true,
     "deniedDirectories": [
       "~/.ssh",
       "~/.aws",
