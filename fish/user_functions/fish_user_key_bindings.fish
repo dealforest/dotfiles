@@ -16,28 +16,5 @@ end
 function fish_user_key_bindings
     bind \cx\ck fkill
 
-    ### fzf ###
     fzf_key_bindings
-    set -q FZF_LEGACY_KEYBINDINGS
-    or set -l FZF_LEGACY_KEYBINDINGS 1
-    if test "$FZF_LEGACY_KEYBINDINGS" -eq 1
-        bind \ct __fzf_find_file
-        bind \cr __fzf_reverse_isearch
-        bind \ec __fzf_cd
-        if bind -M insert >/dev/null ^/dev/null
-            bind -M insert \ct __fzf_find_file
-            bind -M insert \cr __fzf_reverse_isearch
-            bind -M insert \ec __fzf_cd
-        end
-    else
-        bind \ct __fzf_find_file
-        bind \cr __fzf_reverse_isearch
-        bind \ed __fzf_cd
-        if bind -M insert >/dev/null ^/dev/null
-            bind -M insert \ct __fzf_find_file
-            bind -M insert \cr __fzf_reverse_isearch
-            bind -M insert \ed __fzf_cd
-        end
-    end
-    ### fzf ###
 end
