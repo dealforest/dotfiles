@@ -87,7 +87,7 @@ abbr --position anywhere deal dealforest
 
 # claude code
 abbr -a -- cc 'claude code'
-abbr -a -- ccd 'claude code --dangerously-skip-permissions'
+abbr -a -- ccd 'claude code --sandbox --dangerously-skip-permissions'
 
 # tmux
 abbr -a tm 'tmux new -s'
@@ -106,3 +106,15 @@ function _tmc
         "$sep select-pane -t 2"
 end
 abbr -a tmc -f _tmc
+
+function _tmcd
+    set -l session '(basename (pwd))'
+    set -l sep '\\;'
+    echo "tmux new-session -s $session" \
+        "$sep split-window -v -p 50" \
+        "$sep split-window -h -t 0" \
+        "$sep send-keys -t 0 'tig' C-m" \
+        "$sep send-keys -t 2 'claude --sandbox --dangerously-skip-permissions' C-m" \
+        "$sep select-pane -t 2"
+end
+abbr -a tmcd -f _tmcd
