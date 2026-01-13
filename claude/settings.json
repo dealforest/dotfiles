@@ -27,9 +27,13 @@
       "Read(**/*id_ed25519*)",
       "Read(**/*id_rsa*)",
       "Read(**/*token*)",
+      "Read(**/*.pem)",
+      "Read(**/*credential*)",
+      "Read(**/*secret*)",
       "Write(/**)",
       "Write(**/secrets/**)",
       "Write(.env*)",
+      "Write(**/*.pem)",
       "NotebookEdit",
       "NotebookRead",
       "TodoWrite"
