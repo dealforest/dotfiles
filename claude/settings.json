@@ -55,7 +55,6 @@
     "command": "~/.claude/scripts/context-bar.sh"
   },
   "sandbox": {
-    "enabled": true,
     "allowedDomains": [
       "github.com",
       "raw.githubusercontent.com",
