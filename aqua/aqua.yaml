@@ -122,7 +122,7 @@ packages:
   - name: typst/typst@v0.14.2
   - name: tamasfe/taplo@0.10.0
   - name: jj-vcs/jj@v0.37.0
-  - name: secretlint/secretlint@v11.2.5
+  - name: secretlint/secretlint@v11.3.0
   - name: eza-community/eza@v0.23.4
   - name: koki-develop/gat@v0.26.0
   - name: mislav/hub@v2.14.2
