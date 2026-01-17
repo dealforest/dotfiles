@@ -21,8 +21,6 @@ for file in $FISH_CONFIG_DIR/config/*.fish
 end
 
 # theme
-set -gx theme_nerd_fonts yes
-set -gx BIT_THEME monochrome
 source $FISH_CONFIG_DIR/themes/kanagawa.fish
 
 # general bin paths
@@ -94,7 +92,7 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     # tools
     ensure_installed direnv hook fish >>$CONFIG_CACHE
     ensure_installed zoxide init fish >>$CONFIG_CACHE
-    # starship init fish >>$CONFIG_CACHE
+    ensure_installed starship init fish --print-full-init >>$CONFIG_CACHE
 
     # set vivid colors
     echo "set -gx LS_COLORS '$(ensure_installed vivid generate gruvbox-dark)'" >>$CONFIG_CACHE

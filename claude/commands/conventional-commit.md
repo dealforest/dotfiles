@@ -1,5 +1,7 @@
 ---
 description: ローカルの変更を分析し、意味のある単位で分割コミット
+context: fork
+agent: commit-maker
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*), Bash(git restore:*)
 ---
 
