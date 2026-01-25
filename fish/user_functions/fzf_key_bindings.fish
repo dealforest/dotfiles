@@ -149,6 +149,82 @@ function fzf_key_bindings
         fzf-launch-dir ~/sandbox
     end
 
+    function fzf-cd-gwq -d "Pick a git worktree with fzf; Enter=cd, Ctrl-X=remove"
+        # fzf の出力: 1行目=キー, 2行目以降=選択項目
+        # ソート順: * (current) -> + (worktree) -> 無印
+        set -l output (begin
+                git branch | grep '^\*'
+                git branch | grep '^+'
+                git branch | grep '^  '
+                echo "  [new]"
+            end \
+            | fzf --reverse --height 40% \
+                --prompt="Branch> " \
+                --query (commandline) \
+                --expect=enter,ctrl-x \
+                --multi)
+
+        test (count $output) -lt 2; and commandline -f repaint; and return
+
+        set -l key $output[1]
+        set -l selections $output[2..-1]
+
+        # 先頭の "* " や "  " や "+ " を除去してブランチ名を取得
+        set -l branches
+        for sel in $selections
+            set -l b (string replace -r '^[\*\+ ] +' '' $sel)
+            set -a branches $b
+        end
+
+        if test "$key" = "ctrl-x"
+            # Ctrl+X: worktree を削除 (.worktree を含むもののみ)
+            set -l targets
+            for b in $branches
+                set -l path (gwq list --json | jq -r --arg b "$b" '.[] | select(.branch == $b) | .path')
+                if test -n "$path"; and string match -q '*.worktree*' "$path"
+                    set -a targets $b
+                end
+            end
+            if test (count $targets) -gt 0
+                echo "Targets: $targets"
+                set -l action (printf '%s\n' \
+                    "Remove worktree only" \
+                    "Remove worktree and branch" \
+                    "Cancel" \
+                    | fzf --reverse --height 20% --prompt="Action> ")
+                switch $action
+                    case "Remove worktree only"
+                        for b in $targets
+                            gwq remove $b
+                        end
+                    case "Remove worktree and branch"
+                        for b in $targets
+                            gwq remove -b $b
+                        end
+                    case '*'
+                        # Cancel
+                end
+            end
+        else
+            # Enter: cd または作成
+            set -l b $branches[1]
+            if test "$b" = "[new]"
+                read -P "New branch name: " branch_name
+                test -z "$branch_name"; and commandline -f repaint; and return
+                gwq add -b -s $branch_name
+            else
+                set -l path (gwq list --json | jq -r --arg b "$b" '.[] | select(.branch == $b) | .path')
+                if test -n "$path"
+                    cd $path
+                else
+                    gwq add -s $b
+                end
+            end
+        end
+
+        commandline -f repaint
+    end
+
     function fzf-launch-dir \
         --argument-names root_dir \
         -d "Pick a root directory; Enter = cd, Alt-Enter = choose action then run"
@@ -207,6 +283,7 @@ function fzf_key_bindings
     bind \cr fzf-history-widget
     bind \ec fzf-cd-widget
     bind \c] fzf-launch-ghq
+    bind \cq fzf-cd-gwq
     bind \e\[91\;5u fzf-launch-sandbox
 
     if bind -M insert >/dev/null 2>&1
