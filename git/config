@@ -65,7 +65,7 @@
 [commit]
     template = ~/.config/git/commit_template
 [ghq]
-  root = ~/.ghq
+    root = ~/.ghq
 [color "diff-highlight"]
     oldNormal = red bold
     oldHighlight = red bold 52
