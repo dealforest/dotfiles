@@ -84,29 +84,65 @@ function fzf_key_bindings
     end
 
     function fzf-cd-ghq -d "Efficient fish keybindinging for fzf with ghq"
-        # eval "ghq list | fzf --query (commandline)" | read -z select
-        eval "fd -t d -d 3 . \"$(ghq root)\" | sed \"s|$(ghq root)/||\" | fzf --query \"$(commandline)\"" | read -z select
+        ghq list | fzf --query (commandline) | read -z select
 
         if not test -z $select
-            eval "cd (ghq root)/(builtin string trim "$select")"
+            cd (ghq root)/(builtin string trim "$select")
         end
 
         commandline -f repaint
     end
 
     function fzf-code-ghq -d "Efficient fish keybindinging for fzf with ghq"
-        # eval "ghq list | fzf --query (commandline)" | read -z select
-        eval "fd -t d -d 3 . \"$(ghq root)\" | sed \"s|$(ghq root)/||\" | fzf --query \"$(commandline)\"" | read -z select
+        ghq list | fzf --query (commandline) | read -z select
 
         if not test -z $select
-            eval "code (ghq root)/(builtin string trim "$select")"
+            code (ghq root)/(builtin string trim "$select")
         end
 
         commandline -f repaint
     end
 
     function fzf-launch-ghq -d "Pick a ghq repo; Enter = cd, Alt-Enter = choose action then run"
-        fzf-launch-dir (ghq root)
+        set -l root_dir (ghq root)
+
+        set -l key path
+        ghq list \
+            | fzf --reverse --height 40% \
+            --prompt="Repo> " \
+            --query (commandline) \
+            --expect=enter,alt-enter \
+            | read -z key path
+
+        test -z "$path"; and return
+
+        if test "$key" = alt-enter
+            set -l action (printf "%s\n" \
+                "claude code" cursor code lazygit "gh repo view -w" open \
+                | fzf --prompt="Action for $path> " --height 30% --reverse)
+
+            cd $root_dir/(builtin string trim "$path")
+            switch $action
+                case claude code
+                    claude code
+                case cursor
+                    cursor .
+                case code
+                    code .
+                case lazygit
+                    lazygit -p .
+                case 'gh repo view -w'
+                    gh repo view --web (basename -- $path)
+                case open
+                    open .
+                case '*'
+                    return
+            end
+        else
+            cd $root_dir/(builtin string trim "$path")
+        end
+
+        commandline -f repaint
     end
 
     function fzf-launch-sandbox -d "Pick a sandbox; Enter = cd, Alt-Enter = choose action then run"
