@@ -1,6 +1,9 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Bash(rg:*)",
       "Bash(find:*)",
@@ -43,34 +46,55 @@
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
       "Bash(npm remove:*)"
-    ]
+    ],
+    "defaultMode": "default"
   },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/notify.sh '入力待ちです' default"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/notify.sh 'タスク完了' Pop"
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/context-bar.sh"
   },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
+  },
   "sandbox": {
+    "allowUnsandboxedCommands": true,
     "allowedDomains": [
       "github.com",
       "raw.githubusercontent.com",
       "*.npmjs.org",
       "registry.yarnpkg.com"
     ],
-    "allowUnsandboxedCommands": true,
     "deniedDirectories": [
       "~/.ssh",
       "~/.aws",
       "~/.gnupg",
       "~/.config/gh"
     ]
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
   }
 }
