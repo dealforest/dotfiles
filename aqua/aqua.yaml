@@ -127,4 +127,4 @@ packages:
   - name: koki-develop/gat@v0.26.0
   - name: mislav/hub@v2.14.2
   - name: ollama/ollama@v0.14.3
-  - name: jdx/mise@v2026.1.5
+  - name: jdx/mise@v2026.1.6
