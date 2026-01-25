@@ -15,6 +15,7 @@ end
 
 function fish_user_key_bindings
     bind \cx\ck fkill
+    bind \co fzf-phantom
 
     fzf_key_bindings
 end
