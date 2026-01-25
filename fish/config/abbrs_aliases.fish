@@ -118,3 +118,19 @@ function _tmcd
         "$sep select-pane -t 2"
 end
 abbr -a tmcd -f _tmcd
+
+# phantom (Claude Code 並列実行向け)
+abbr -a ph phantom
+abbr -a phc 'phantom create'
+abbr -a phl 'phantom list'
+abbr -a phd 'phantom delete --fzf'
+abbr -a phs 'phantom shell --fzf'
+abbr -a phw 'phantom where --fzf'
+
+# phantom + Claude Code
+abbr -a phcc 'phantom exec --fzf claude'
+abbr -a phccd 'phantom exec --fzf claude --sandbox --dangerously-skip-permissions'
+abbr -a phtc 'phantom shell --fzf --tmux --exec claude'
+
+# GitHub PR + Claude Code
+abbr -a phgh 'phantom github checkout'

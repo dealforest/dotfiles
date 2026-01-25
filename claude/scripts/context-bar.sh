@@ -58,8 +58,8 @@ if [[ -n "$cwd" && -d "$cwd" ]]; then
     fi
 fi
 
-# Get Claude Code version
-cc_version="v$(claude --version 2>/dev/null | head -1)"
+# Get Claude Code version from JSON
+cc_version="v$(echo "$input" | jq -r '.version // "?"')"
 
 # Get transcript path for context calculation and last message feature
 transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
@@ -135,21 +135,19 @@ else
     ctx="${bar} ${C_GRAY}~${pct}% of ${max_k}k tokens"
 fi
 
-# Build output: Model | Dir | Branch (status) | Context | Version
-output="${C_ACCENT}${model}${C_GRAY} | 📁 ${dir}"
+# Build output: Version Model | Dir | Branch (status) | Context
+output="${C_ACCENT}${cc_version} ${model}${C_GRAY} | 📁 ${dir}"
 [[ -n "$branch" ]] && output+=" | 🔀 ${branch}${git_status}"
-output+=" | ${ctx}"
-[[ -n "$cc_version" ]] && output+=" | ${C_ACCENT}${cc_version}${C_RESET}"
+output+=" | ${ctx}${C_RESET}"
 
 printf '%b\n' "$output"
 
 # Get user's last message (text only, not tool results, skip unhelpful messages)
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
     # Calculate visible length (without ANSI codes) - 10 chars for bar + content
-    plain_output="${model} | 📁 ${dir}"
+    plain_output="${cc_version} ${model} | 📁 ${dir}"
     [[ -n "$branch" ]] && plain_output+=" | 🔀 ${branch}${git_status}"
     plain_output+=" | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
-    [[ -n "$cc_version" ]] && plain_output+=" | ${cc_version}"
     max_len=${#plain_output}
     last_user_msg=$(jq -rs '
         # Messages to skip (not useful as context)
