@@ -97,7 +97,7 @@ packages:
   - name: wakatime/wakatime-cli@v1.137.1
   - name: BurntSushi/xsv@0.13.0
   - name: LuaLS/lua-language-server@3.17.1
-  - name: astral-sh/ruff@0.14.13
+  - name: astral-sh/ruff@0.14.14
   - name: ducaale/xh@v0.25.3
   - name: xo/usql@v0.20.8
   - name: sharkdp/vivid@v0.10.1
