@@ -1,8 +1,12 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
   },
+  "enable_tool_search": true,
   "permissions": {
     "allow": [
       "Bash(rg:*)",
