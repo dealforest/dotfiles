@@ -55,7 +55,7 @@ packages:
   - name: hadolint/hadolint@v2.14.0
   - name: noborus/trdsql@v1.1.0
   - name: JohnnyMorganz/StyLua@v2.3.1
-  - name: mattn/efm-langserver@v0.0.54
+  - name: mattn/efm-langserver@v0.0.55
   - name: cloudflare/cloudflared@2026.1.2
   - name: wasmerio/wasmer@v7.0.0
   - name: mattn/bsky@v0.0.73
