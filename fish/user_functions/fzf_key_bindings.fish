@@ -192,14 +192,19 @@ function fzf_key_bindings
                     "Remove worktree and branch" \
                     "Cancel" \
                     | fzf --reverse --height 20% --prompt="Action> ")
+                # メインリポジトリに移動（worktree 内から削除できないため）
+                set -l main_repo (gwq list --json | jq -r '.[] | select(.path | contains(".worktree") | not) | .path')
+                if test -n "$main_repo"
+                    cd $main_repo
+                end
                 switch $action
-                    case "Remove worktree only"
+                    case '*worktree only*'
                         for b in $targets
-                            gwq remove $b
+                            gwq remove -f $b
                         end
-                    case "Remove worktree and branch"
+                    case '*worktree and branch*'
                         for b in $targets
-                            gwq remove -b $b
+                            gwq remove -f -b $b
                         end
                     case '*'
                         # Cancel
