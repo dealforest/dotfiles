@@ -115,7 +115,7 @@ packages:
   - name: jetify-com/devbox@0.16.0
   - name: dduan/tre@v0.4.0
   - name: astral-sh/uv@0.9.28
-  - name: mikefarah/yq@v4.52.1
+  - name: mikefarah/yq@v4.52.2
   - name: sheepla/srss@v0.1.0
   - name: fastfetch-cli/fastfetch@2.58.0
   - name: sxyazi/yazi@v26.1.22
