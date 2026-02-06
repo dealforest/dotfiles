@@ -1,6 +1,7 @@
 {
   "env": {
-    "ENABLE_LSP_TOOL": "1"
+    "ENABLE_LSP_TOOL": "1",
+    "ENABLE_TOOL_SEARCH": "1"
   },
   "attribution": {
     "commit": "",
@@ -101,6 +102,5 @@
       "~/.config/gh"
     ]
   },
-  "enable_tool_search": true,
   "plansDirectory": "./.plans"
 }
