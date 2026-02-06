@@ -57,7 +57,7 @@ packages:
   - name: JohnnyMorganz/StyLua@v2.3.1
   - name: mattn/efm-langserver@v0.0.55
   - name: cloudflare/cloudflared@2026.1.2
-  - name: wasmerio/wasmer@v7.0.0
+  - name: wasmerio/wasmer@v7.0.1
   - name: mattn/bsky@v0.0.73
   - name: spf13/cobra-cli@v1.3.0
   - name: segmentio/golines@v0.13.0
