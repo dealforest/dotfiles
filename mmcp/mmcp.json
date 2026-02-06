@@ -13,14 +13,6 @@
         "@upstash/context7-mcp@latest"
       ],
       "env": {}
-    },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest"
-      ],
-      "env": {}
     }
   }
 }
