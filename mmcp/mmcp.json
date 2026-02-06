@@ -13,6 +13,15 @@
         "@upstash/context7-mcp@latest"
       ],
       "env": {}
+    },
+    "xcodeproj": {
+      "command": "docker",
+      "args": [
+        "run", "--pull=always", "--rm", "-i",
+        "-v", "$PWD:/workspace",
+        "ghcr.io/giginet/xcodeproj-mcp-server:latest",
+        "/workspace"
+      ]
     }
   }
 }
