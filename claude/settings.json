@@ -6,7 +6,6 @@
     "commit": "",
     "pr": ""
   },
-  "enable_tool_search": true,
   "permissions": {
     "allow": [
       "Bash(rg:*)",
@@ -101,5 +100,7 @@
       "~/.gnupg",
       "~/.config/gh"
     ]
-  }
+  },
+  "enable_tool_search": true,
+  "plansDirectory": "./.plans"
 }
