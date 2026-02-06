@@ -1,4 +1,8 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1",
+    "ENABLE_TOOL_SEARCH": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -80,7 +84,8 @@
     "typescript-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "allowUnsandboxedCommands": true,
@@ -96,5 +101,6 @@
       "~/.gnupg",
       "~/.config/gh"
     ]
-  }
+  },
+  "plansDirectory": "./.plans"
 }

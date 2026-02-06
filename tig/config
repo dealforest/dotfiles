@@ -1,4 +1,4 @@
-set main-view = id date:relative-compact author:maxwidth=30 commit-title:graph=yes,refs=yes
+set main-view = id date:relative-compact author:no,maxwidth=30 commit-title:graph=yes,refs=yes
 
 # set mouse = true
 set vertical-split = yes

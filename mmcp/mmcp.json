@@ -14,13 +14,17 @@
       ],
       "env": {}
     },
-    "playwright": {
-      "command": "npx",
+    "xcodeproj": {
+      "command": "docker",
       "args": [
-        "-y",
-        "@playwright/mcp@latest"
-      ],
-      "env": {}
+        "run",
+        "--rm",
+        "-i",
+        "-v",
+        "${PWD}:/workspace",
+        "ghcr.io/giginet/xcodeproj-mcp-server",
+        "/workspace"
+      ]
     }
   }
 }

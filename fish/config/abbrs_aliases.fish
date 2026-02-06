@@ -95,29 +95,8 @@ abbr -a tma 'tmux attach'
 abbr -a tml 'tmux ls'
 abbr -a tmk 'tmux kill-server'
 
-function _tmc
-    set -l session '(basename (pwd))'
-    set -l sep '\\;'
-    echo "tmux new-session -s $session" \
-        "$sep split-window -v -p 50" \
-        "$sep split-window -h -t 0" \
-        "$sep send-keys -t 0 'tig' C-m" \
-        "$sep send-keys -t 2 'claude' C-m" \
-        "$sep select-pane -t 2"
-end
-abbr -a tmc -f _tmc
-
-function _tmcd
-    set -l session '(basename (pwd))'
-    set -l sep '\\;'
-    echo "tmux new-session -s $session" \
-        "$sep split-window -v -p 50" \
-        "$sep split-window -h -t 0" \
-        "$sep send-keys -t 0 'tig' C-m" \
-        "$sep send-keys -t 2 'claude --sandbox --dangerously-skip-permissions' C-m" \
-        "$sep select-pane -t 2"
-end
-abbr -a tmcd -f _tmcd
+alias tmc='tmux-claude-layout'
+alias tmcd='tmux-claude-layout "--sandbox --dangerously-skip-permissions"'
 
 # phantom (Claude Code 並列実行向け)
 abbr -a ph phantom
