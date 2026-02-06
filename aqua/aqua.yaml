@@ -128,3 +128,4 @@ packages:
   - name: mislav/hub@v2.14.2
   - name: ollama/ollama@v0.15.5
   - name: jdx/mise@v2026.2.1
+  - name: sachaos/viddy@1.3.0
