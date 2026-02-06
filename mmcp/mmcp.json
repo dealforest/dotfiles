@@ -17,9 +17,12 @@
     "xcodeproj": {
       "command": "docker",
       "args": [
-        "run", "--pull=always", "--rm", "-i",
-        "-v", "$PWD:/workspace",
-        "ghcr.io/giginet/xcodeproj-mcp-server:latest",
+        "run",
+        "--rm",
+        "-i",
+        "-v",
+        "${PWD}:/workspace",
+        "ghcr.io/giginet/xcodeproj-mcp-server",
         "/workspace"
       ]
     }
