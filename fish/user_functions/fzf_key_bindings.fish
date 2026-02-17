@@ -227,6 +227,10 @@ function fzf_key_bindings
                     cd $path
                 else
                     gwq add $b
+                    set -l new_path (gwq list --json | jq -r --arg b "$b" '.[] | select(.branch == $b) | .path')
+                    if test -n "$new_path"
+                        cd $new_path
+                    end
                 end
             end
         end
