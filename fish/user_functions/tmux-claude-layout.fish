@@ -1,7 +1,7 @@
 function tmux-claude-layout -a claude_args -d "Create dev layout with tig and claude"
     set -l name (basename (pwd))
     set -l claude_cmd "claude $claude_args"
-    set -l viddy_cmd "viddy -- 'CLICOLOR_FORCE=1 glow --style dark \"\$(ls -t .plans/*.md 2>/dev/null | head -1)\" 2>/dev/null || echo \"No plan files found\"'"
+    set -l viddy_cmd "viddy -- 'f=\$(ls -t .plans/*.md 2>/dev/null | head -1); echo \"\$f\"; CLICOLOR_FORCE=1 glow --style dark \"\$f\" 2>/dev/null || echo \"No plan files found\"'"
 
     if test -z "$TMUX"
         # tmux 外: 新規セッションを作成してアタッチ
