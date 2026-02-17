@@ -30,3 +30,11 @@ allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git r
 - 既存のコミットのプッシュのみ
 - PR タイトルと本文はコミット内容から自動生成
 - **PR のマージは絶対に行わない**（`gh pr merge` の実行禁止）
+
+## Issue 番号の自動リンク
+
+ブランチ名に issue 番号が含まれている場合（例: `feature/566_batch_size_limit`, `fix/123-bug-title`）、PR 本文の先頭に `- fix #<issue番号>` を追加する。
+
+- ブランチ名からの番号抽出パターン: `feature/<数字>`, `fix/<数字>`, `hotfix/<数字>` など、`/` の直後にある数字
+- 例: `feature/566_batch_size_limit` → `- fix #566`
+- 例: `fix/123-bug-title` → `- fix #123`
