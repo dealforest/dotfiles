@@ -29,3 +29,4 @@ allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git r
 - 変更のコミットは行わない
 - 既存のコミットのプッシュのみ
 - PR タイトルと本文はコミット内容から自動生成
+- **PR のマージは絶対に行わない**（`gh pr merge` の実行禁止）
