@@ -12,7 +12,10 @@ function tmux-claude-layout -a claude_args -d "Create dev layout with tig and cl
             send-keys -t 0 'tig' C-m \; \
             send-keys -t 1 $viddy_cmd C-m \; \
             send-keys -t 2 $claude_cmd C-m \; \
-            select-pane -t 2
+            select-pane -t 2 \; \
+            set-option -gF @ct_session "#{session_name}" \; \
+            set-option -gF @ct_pane "#{pane_id}" \; \
+            run-shell '$HOME/.config/tmux/scripts/choose-tree-filtered.sh'
     else
         # tmux 内: 現在のウィンドウで分割を実行
         tmux split-window -v -p 50
