@@ -18,7 +18,7 @@ function tmux-claude-layout -d "Create dev layout with tig and claude"
             if test -n "$wt_path"
                 cd $wt_path
             else
-                gwq add -b -s $branch_name
+                gwq add -b $branch_name
                 set wt_path (gwq list --json | jq -r --arg b "$branch_name" '.[] | select(.branch == $b) | .path')
                 if test -n "$wt_path"
                     cd $wt_path
