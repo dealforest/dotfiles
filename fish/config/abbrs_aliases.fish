@@ -91,12 +91,13 @@ abbr -a -- ccd 'claude code --sandbox --dangerously-skip-permissions'
 
 # tmux
 abbr -a tm 'tmux new -s'
-abbr -a tma 'tmux attach'
+abbr -a tma 'fzf_tmux_attach'
+abbr -a tmc 'tmux-claude-layout'
+abbr -a tmcd 'tmux-claude-layout "--sandbox --dangerously-skip-permissions"'
+abbr -a tmk 'tmux kill-window'
+abbr -a tmka 'tmux kill-window -a'
 abbr -a tml 'tmux ls'
-abbr -a tmk 'tmux kill-server'
-
-alias tmc='tmux-claude-layout'
-alias tmcd='tmux-claude-layout "--sandbox --dangerously-skip-permissions"'
+abbr -a tms 'tmux kill-server'
 
 # phantom (Claude Code 並列実行向け)
 abbr -a ph phantom
