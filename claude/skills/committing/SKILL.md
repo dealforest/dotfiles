@@ -55,4 +55,10 @@ git commit -m "type: description"
 - description だけで変更内容が伝わるようにする（body は補足のみ）
 - 迷ったら分割（後から squash は簡単、分割は難しい）
 
+## Worktree 対応
+
+- **git worktree 内で起動された場合、全ての git 操作はその worktree 内で実行すること**
+- 親リポジトリ（`.worktree/` の親ディレクトリ）でコミットを作成してはいけない
+- `git rev-parse --show-toplevel` で現在の worktree ルートを確認し、そのディレクトリ内で操作する
+
 確認なしで分析とコミットを進めること。
