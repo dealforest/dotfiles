@@ -216,7 +216,7 @@ function fzf_key_bindings
             if test "$b" = "[new]"
                 read -P "New branch name: " branch_name
                 test -z "$branch_name"; and commandline -f repaint; and return
-                gwq add -b -s $branch_name
+                gwq add -b $branch_name
                 set -l path (gwq list --json | jq -r --arg b "$branch_name" '.[] | select(.branch == $b) | .path')
                 if test -n "$path"
                     cd $path
@@ -226,7 +226,11 @@ function fzf_key_bindings
                 if test -n "$path"
                     cd $path
                 else
-                    gwq add -s $b
+                    gwq add $b
+                    set -l new_path (gwq list --json | jq -r --arg b "$b" '.[] | select(.branch == $b) | .path')
+                    if test -n "$new_path"
+                        cd $new_path
+                    end
                 end
             end
         end
