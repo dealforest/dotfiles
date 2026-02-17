@@ -38,3 +38,9 @@ allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git r
 - ブランチ名からの番号抽出パターン: `feature/<数字>`, `fix/<数字>`, `hotfix/<数字>` など、`/` の直後にある数字
 - 例: `feature/566_batch_size_limit` → `- fix #566`
 - 例: `fix/123-bug-title` → `- fix #123`
+
+## Worktree 対応
+
+- **git worktree 内で起動された場合、全ての git 操作はその worktree 内で実行すること**
+- 親リポジトリ（`.worktree/` の親ディレクトリ）でプッシュやPR操作を行ってはいけない
+- `git rev-parse --show-toplevel` で現在の worktree ルートを確認し、そのディレクトリ内で操作する
