@@ -25,7 +25,7 @@ packages:
   - name: sharkdp/fd@v10.3.0
   - name: aquaproj/registry-tool@v0.3.6
   - name: marp-team/marp-cli@v4.2.3
-  - name: tcnksm/ghr@v0.17.2
+  - name: tcnksm/ghr@v0.18.0
   - name: x-motemen/ghq@v1.8.1
   - name: ajeetdsouza/zoxide@v0.9.9
   - name: sharkdp/bat@v0.26.1
