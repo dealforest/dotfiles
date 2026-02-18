@@ -103,5 +103,6 @@
       "~/.config/gh"
     ]
   },
-  "plansDirectory": "./.plans"
+  "plansDirectory": "./.plans",
+  "skipDangerousModePermissionPrompt": true
 }
