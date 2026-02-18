@@ -7,7 +7,7 @@ if [ "$1" = "--exec" ]; then
   PANE_PATH=$(tmux display-message -p '#{pane_current_path}')
   GWQ_JSON=$(gwq list --json)
   BRANCH=$(echo "$GWQ_JSON" | jq -r --arg p "$PANE_PATH" \
-    '[.[] | select($p | startswith(.path))] | sort_by(.path | length) | last | .branch')
+    '[.[] | select(.path as $path | $p | startswith($path))] | sort_by(.path | length) | last | .branch')
   MAIN_REPO=$(echo "$GWQ_JSON" | jq -r '.[] | select(.path | contains(".worktree") | not) | .path')
 
   if [ -n "$BRANCH" ] && [ "$BRANCH" != "null" ]; then
@@ -23,7 +23,7 @@ PANE_PATH=$(tmux display-message -p '#{pane_current_path}')
 
 if [[ "$PANE_PATH" == *".worktree"* ]]; then
   BRANCH=$(gwq list --json | jq -r --arg p "$PANE_PATH" \
-    '[.[] | select($p | startswith(.path))] | sort_by(.path | length) | last | .branch')
+    '[.[] | select(.path as $path | $p | startswith($path))] | sort_by(.path | length) | last | .branch')
 
   if [ -n "$BRANCH" ] && [ "$BRANCH" != "null" ]; then
     tmux confirm-before -p "kill worktree ($BRANCH) and window? (y/n)" \
