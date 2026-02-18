@@ -97,7 +97,7 @@ abbr -a tmcd 'tmux-claude-layout "--sandbox --dangerously-skip-permissions"'
 abbr -a tmk 'tmux kill-window'
 abbr -a tmka 'tmux kill-window -a'
 abbr -a tml 'tmux ls'
-abbr -a tms 'tmux kill-server'
+abbr -a tmm 'tmux-claude-monitor-layout'
 
 # phantom (Claude Code 並列実行向け)
 abbr -a ph phantom
