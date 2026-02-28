@@ -127,6 +127,6 @@ packages:
   - name: koki-develop/gat@v0.26.1
   - name: mislav/hub@v2.14.2
   - name: ollama/ollama@v0.17.1
-  - name: jdx/mise@v2026.2.19
+  - name: jdx/mise@v2026.2.20
   - name: sachaos/viddy@1.3.0
   - name: charmbracelet/glow@2.1.1
