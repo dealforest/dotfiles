@@ -65,6 +65,17 @@
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/notify.sh '質問があります' Blow"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
