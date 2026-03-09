@@ -60,6 +60,9 @@ set -gx BETTER_EXCEPTIONS 1
 ## codon
 fish_add_path $HOME/.codon/bin
 
+# maestro
+fish_add_path $HOME/.maestro/bin
+
 # user scripts
 fish_add_path $HOME/.scripts
 fish_add_path $HOME/.scripts/bin
