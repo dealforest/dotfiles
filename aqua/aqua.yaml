@@ -49,7 +49,7 @@ packages:
   - name: dandavison/delta@0.18.2
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.3
-  - name: wader/fq@v0.16.0
+  - name: wader/fq@v0.17.0
   - name: planetscale/cli@v0.275.0
   - name: supabase/cli@v2.78.1
   - name: hadolint/hadolint@v2.14.0
