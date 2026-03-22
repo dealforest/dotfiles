@@ -1,76 +1,103 @@
 #!/bin/bash
 
-# Color theme: gray, orange, blue, teal, green, lavender, rose, gold, slate, cyan
-# Preview colors with: bash scripts/color-preview.sh
-COLOR="blue"
-
-# Color codes
+# Colors
 C_RESET='\033[0m'
-C_GRAY='\033[38;5;245m'  # explicit gray for default text
+C_GRAY='\033[38;5;245m'
+C_DIM='\033[38;5;240m'
 C_BAR_EMPTY='\033[38;5;238m'
-case "$COLOR" in
-    orange)   C_ACCENT='\033[38;5;173m' ;;
-    blue)     C_ACCENT='\033[38;5;74m' ;;
-    teal)     C_ACCENT='\033[38;5;66m' ;;
-    green)    C_ACCENT='\033[38;5;71m' ;;
-    lavender) C_ACCENT='\033[38;5;139m' ;;
-    rose)     C_ACCENT='\033[38;5;132m' ;;
-    gold)     C_ACCENT='\033[38;5;136m' ;;
-    slate)    C_ACCENT='\033[38;5;60m' ;;
-    cyan)     C_ACCENT='\033[38;5;37m' ;;
-    *)        C_ACCENT="$C_GRAY" ;;  # gray: all same color
-esac
+C_MODEL='\033[38;5;175m'       # pink/rose for model name
+C_BRANCH='\033[38;5;143m'      # olive/yellow for branch
+C_ADD='\033[38;5;108m'         # green for additions
+C_DEL='\033[38;5;131m'         # red for deletions
+C_COST='\033[38;5;179m'        # gold for cost
+C_BAR_CTX='\033[38;5;143m'     # olive for context bar
+C_BAR_5H='\033[38;5;143m'      # olive for 5h bar
+C_BAR_7D='\033[38;5;179m'      # gold for 7d bar
+C_WARN='\033[38;5;136m'
+C_DANGER='\033[38;5;131m'
 
 input=$(cat)
 
-# Extract model, directory, and cwd
+# Extract fields
 model=$(echo "$input" | jq -r '.model.display_name // .model.id // "?"')
 cwd=$(echo "$input" | jq -r '.cwd // empty')
-dir=$(basename "$cwd" 2>/dev/null || echo "?")
 
-# Get git branch, uncommitted file count, and sync status
+# Shorten path: replace $HOME with ~
+if [[ -n "$cwd" ]]; then
+    display_path="${cwd/#$HOME/~}"
+else
+    display_path="?"
+fi
+
+# Worktree info
+worktree_name=$(echo "$input" | jq -r '.worktree.name // empty')
+worktree_branch=$(echo "$input" | jq -r '.worktree.branch // empty')
+
+# Git info
 branch=""
-git_status=""
+diff_stat=""
 if [[ -n "$cwd" && -d "$cwd" ]]; then
-    branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
+    if [[ -n "$worktree_branch" ]]; then
+        branch="$worktree_branch"
+    else
+        branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
+    fi
     if [[ -n "$branch" ]]; then
-        # Count uncommitted files
-        file_count=$(git -C "$cwd" --no-optional-locks status --porcelain -uall 2>/dev/null | wc -l | tr -d ' ')
+        # Get diff stats (additions/deletions) against HEAD
+        stats=$(git -C "$cwd" --no-optional-locks diff --shortstat 2>/dev/null)
+        staged_stats=$(git -C "$cwd" --no-optional-locks diff --cached --shortstat 2>/dev/null)
 
-        # Check sync status with upstream
-        sync_status=""
-        upstream=$(git -C "$cwd" rev-parse --abbrev-ref @{upstream} 2>/dev/null)
-        if [[ -n "$upstream" ]]; then
-            counts=$(git -C "$cwd" rev-list --left-right --count HEAD...@{upstream} 2>/dev/null)
-            ahead=$(echo "$counts" | cut -f1)
-            behind=$(echo "$counts" | cut -f2)
-            [[ "$ahead" -gt 0 ]] && sync_status+="⇡${ahead}"
-            [[ "$behind" -gt 0 ]] && sync_status+="⇣${behind}"
+        additions=0
+        deletions=0
+        if [[ -n "$stats" ]]; then
+            a=$(echo "$stats" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+')
+            d=$(echo "$stats" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+')
+            [[ -n "$a" ]] && additions=$((additions + a))
+            [[ -n "$d" ]] && deletions=$((deletions + d))
+        fi
+        if [[ -n "$staged_stats" ]]; then
+            a=$(echo "$staged_stats" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+')
+            d=$(echo "$staged_stats" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+')
+            [[ -n "$a" ]] && additions=$((additions + a))
+            [[ -n "$d" ]] && deletions=$((deletions + d))
         fi
 
-        # Build git status string (starship style)
-        if [[ "$file_count" -gt 0 ]]; then
-            git_status=" !${file_count}"
-        fi
-        if [[ -n "$sync_status" ]]; then
-            git_status+=" ${sync_status}"
+        if [[ $additions -gt 0 || $deletions -gt 0 ]]; then
+            diff_stat=" ${C_ADD}+${additions}${C_GRAY}/${C_DEL}-${deletions}"
         fi
     fi
 fi
 
-# Get Claude Code version from JSON
-cc_version="v$(echo "$input" | jq -r '.version // "?"')"
-
-# Get transcript path for context calculation and last message feature
+# Context window
 transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
-
-# Get context window size from JSON (accurate), but calculate tokens from transcript
-# (more accurate than total_input_tokens which excludes system prompt/tools/memory)
-# See: github.com/anthropics/claude-code/issues/13652
 max_context=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 max_k=$((max_context / 1000))
 
-# Calculate context bar from transcript
+# --- Bar builder ---
+build_bar() {
+    local pct=$1
+    local bar_color=$2
+    local bar_width=10
+    local bar=""
+
+    for ((i=0; i<bar_width; i++)); do
+        bar_start=$((i * 10))
+        progress=$((pct - bar_start))
+        if [[ $progress -ge 8 ]]; then
+            bar+="${bar_color}█${C_RESET}"
+        elif [[ $progress -ge 3 ]]; then
+            bar+="${bar_color}▄${C_RESET}"
+        else
+            bar+="${C_BAR_EMPTY}░${C_RESET}"
+        fi
+    done
+    echo "$bar"
+}
+
+# Calculate context usage
+baseline=20000
+pct=0
+pct_prefix=""
 if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
     context_length=$(jq -s '
         map(select(.message.usage and .isSidechain != true and .isApiErrorMessage != true)) |
@@ -82,97 +109,130 @@ if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
         else 0 end
     ' < "$transcript_path")
 
-    # 20k baseline: includes system prompt (~3k), tools (~15k), memory (~300),
-    # plus ~2k for git status, env block, XML framing, and other dynamic context
-    baseline=20000
-    bar_width=10
-
     if [[ "$context_length" -gt 0 ]]; then
         pct=$((context_length * 100 / max_context))
-        pct_prefix=""
     else
-        # At conversation start, ~20k baseline is already loaded
         pct=$((baseline * 100 / max_context))
         pct_prefix="~"
     fi
-
-    [[ $pct -gt 100 ]] && pct=100
-
-    bar=""
-    for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 10))
-        progress=$((pct - bar_start))
-        if [[ $progress -ge 8 ]]; then
-            bar+="${C_ACCENT}█${C_RESET}"
-        elif [[ $progress -ge 3 ]]; then
-            bar+="${C_ACCENT}▄${C_RESET}"
-        else
-            bar+="${C_BAR_EMPTY}░${C_RESET}"
-        fi
-    done
-
-    ctx="${bar} ${C_GRAY}${pct_prefix}${pct}% of ${max_k}k tokens"
 else
-    # Transcript not available yet - show baseline estimate
-    baseline=20000
-    bar_width=10
     pct=$((baseline * 100 / max_context))
-    [[ $pct -gt 100 ]] && pct=100
+    pct_prefix="~"
+fi
+[[ $pct -gt 100 ]] && pct=100
 
-    bar=""
-    for ((i=0; i<bar_width; i++)); do
-        bar_start=$((i * 10))
-        progress=$((pct - bar_start))
-        if [[ $progress -ge 8 ]]; then
-            bar+="${C_ACCENT}█${C_RESET}"
-        elif [[ $progress -ge 3 ]]; then
-            bar+="${C_ACCENT}▄${C_RESET}"
-        else
-            bar+="${C_BAR_EMPTY}░${C_RESET}"
-        fi
-    done
+# Context bar color based on usage
+ctx_color="$C_BAR_CTX"
+[[ $pct -ge 70 ]] && ctx_color="$C_WARN"
+[[ $pct -ge 90 ]] && ctx_color="$C_DANGER"
 
-    ctx="${bar} ${C_GRAY}~${pct}% of ${max_k}k tokens"
+ctx_bar=$(build_bar "$pct" "$ctx_color")
+
+# Rate limits
+five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_remaining=$(echo "$input" | jq -r '.rate_limits.five_hour.remaining_seconds // empty')
+week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+
+# Format remaining time
+format_time() {
+    local secs=$1
+    if [[ -z "$secs" || "$secs" == "null" ]]; then
+        echo ""
+        return
+    fi
+    local h=$((secs / 3600))
+    local m=$(( (secs % 3600) / 60 ))
+    if [[ $h -gt 0 ]]; then
+        echo "${h}h${m}m"
+    else
+        echo "${m}m"
+    fi
+}
+
+# Get Claude Code version
+cc_version="v$(echo "$input" | jq -r '.version // "?"')"
+
+# === LINE 1: version model | ♪ branch +X/-Y | path ===
+line1="🤖 ${C_MODEL}${cc_version} - ${model}${C_GRAY} | "
+
+if [[ -n "$worktree_name" ]]; then
+    line1+="${C_BRANCH}wt:${worktree_name}${C_GRAY} "
 fi
 
-# Build output: Version Model | Dir | Branch (status) | Context
-output="${C_ACCENT}${cc_version} ${model}${C_GRAY} | 📁 ${dir}"
-[[ -n "$branch" ]] && output+=" | 🔀 ${branch}${git_status}"
-output+=" | ${ctx}${C_RESET}"
+if [[ -n "$branch" ]]; then
+    line1+="🔀 ${C_BRANCH}${branch}${diff_stat}${C_GRAY}"
+    line1+=" | "
+fi
 
-printf '%b\n' "$output"
+line1+="📁 ${C_GRAY}${display_path}${C_RESET}"
 
-# Get user's last message (text only, not tool results, skip unhelpful messages)
-if [[ -n "$transcript_path" && -f "$transcript_path" ]]; then
-    # Calculate visible length (without ANSI codes) - 10 chars for bar + content
-    plain_output="${cc_version} ${model} | 📁 ${dir}"
-    [[ -n "$branch" ]] && plain_output+=" | 🔀 ${branch}${git_status}"
-    plain_output+=" | xxxxxxxxxx ${pct}% of ${max_k}k tokens"
-    max_len=${#plain_output}
-    last_user_msg=$(jq -rs '
-        # Messages to skip (not useful as context)
-        def is_unhelpful:
-            startswith("[Request interrupted") or
-            startswith("[Request cancelled") or
-            . == "";
+printf '%b\n' "$line1"
 
-        [.[] | select(.type == "user") |
-         select(.message.content | type == "string" or
-                (type == "array" and any(.[]; .type == "text")))] |
-        reverse |
-        map(.message.content |
-            if type == "string" then .
-            else [.[] | select(.type == "text") | .text] | join(" ") end |
-            gsub("\n"; " ") | gsub("  +"; " ")) |
-        map(select(is_unhelpful | not)) |
-        first // ""
-    ' < "$transcript_path" 2>/dev/null)
+# === LINE 2: [bar] pct%/maxk 5h [bar] pct%(time) 7d [bar] pct% ===
+line2=""
 
-    if [[ -n "$last_user_msg" ]]; then
-        if [[ ${#last_user_msg} -gt $max_len ]]; then
-            echo "💬 ${last_user_msg:0:$((max_len - 3))}..."
-        else
-            echo "💬 ${last_user_msg}"
-        fi
+# Context
+line2+="📊 ${ctx_bar} ${ctx_color}${pct_prefix}${pct}%${C_GRAY}/${max_k}k"
+
+# 5h rate limit
+if [[ -n "$five_pct" ]]; then
+    five_int=$(printf '%.0f' "$five_pct")
+    five_bar=$(build_bar "$five_int" "$C_BAR_5H")
+    time_str=$(format_time "$five_remaining")
+    line2+=" ${C_GRAY}5h ${five_bar} ${C_BAR_5H}${five_int}%"
+    if [[ -n "$time_str" ]]; then
+        line2+="${C_DIM}(${time_str})"
     fi
+fi
+
+# 7d rate limit
+if [[ -n "$week_pct" ]]; then
+    week_int=$(printf '%.0f' "$week_pct")
+    week_bar=$(build_bar "$week_int" "$C_BAR_7D")
+    line2+=" ${C_GRAY}7d ${week_bar} ${C_BAR_7D}${week_int}%"
+fi
+
+line2+="${C_RESET}"
+
+printf '%b\n' "$line2"
+
+# === LINE 3: ccusage daily/monthly costs ===
+today=$(date +%Y%m%d)
+month_start=$(date +%Y%m01)
+month_label=$(date +%Y/%m)
+
+daily_cost=""
+monthly_cost=""
+
+# Get daily cost
+daily_json=$(npx --yes ccusage daily --json --since "$today" --offline 2>/dev/null)
+if [[ -n "$daily_json" ]]; then
+    daily_usd=$(echo "$daily_json" | jq -r '.daily[0].totalCost // 0')
+    if [[ -n "$daily_usd" ]] && (( $(echo "$daily_usd > 0" | bc -l 2>/dev/null) )); then
+        daily_fmt=$(printf '%.2f' "$daily_usd" 2>/dev/null)
+        daily_cost="\$${daily_fmt}"
+    fi
+fi
+
+# Get monthly cost
+monthly_json=$(npx --yes ccusage monthly --json --since "$month_start" --offline 2>/dev/null)
+if [[ -n "$monthly_json" ]]; then
+    monthly_usd=$(echo "$monthly_json" | jq -r '.monthly[0].totalCost // 0')
+    if [[ -n "$monthly_usd" ]] && (( $(echo "$monthly_usd > 0" | bc -l 2>/dev/null) )); then
+        monthly_fmt=$(printf '%.2f' "$monthly_usd" 2>/dev/null)
+        monthly_cost="\$${monthly_fmt}"
+    fi
+fi
+
+if [[ -n "$daily_cost" || -n "$monthly_cost" ]]; then
+    line3=""
+    if [[ -n "$daily_cost" ]]; then
+        line3+="💰 ${C_GRAY}Today ${daily_cost}"
+    fi
+    if [[ -n "$monthly_cost" ]]; then
+        [[ -n "$line3" ]] && line3+=" | "
+        line3+="${C_GRAY}${month_label} ${monthly_cost}"
+    fi
+    line3+="${C_RESET}"
+    printf '%b\n' "$line3"
 fi
