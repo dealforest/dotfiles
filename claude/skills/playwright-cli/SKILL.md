@@ -1,6 +1,6 @@
 ---
 name: playwright-cli
-description: Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web pages, fill forms, take screenshots, test web applications, or extract information from web pages.
+description: ブラウザ操作を自動化する。Webテスト、フォーム入力、スクリーンショット撮影、データ抽出に対応。「Webページを開いて」「ブラウザで確認」「スクリーンショットを撮って」「フォームに入力」「Webテスト」「playwright」「ブラウザ操作」「ページを操作」と言及された時に使用。
 context: fork
 allowed-tools: Bash(playwright-cli:*)
 ---

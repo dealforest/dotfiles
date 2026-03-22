@@ -1,6 +1,6 @@
 ---
 name: flowchart
-description: 自然言語やMermaid記法からVisio風スイムレーンフローチャートSVGを生成する。フローチャート生成、SVGフローチャート、スイムレーン図、フローをまとめて、処理の流れと言及された時に使用。
+description: 自然言語やMermaid記法からVisio風スイムレーンフローチャートSVGを生成する。「フローチャート生成」「SVGフローチャート」「スイムレーン図」「フローをまとめて」「処理の流れ」「フロー図を作って」「図にして」「処理フローを可視化」「ワークフロー図」と言及された時に使用。コードベースの処理フロー可視化にも対応。
 context: fork
 agent: general-purpose
 allowed-tools: Bash(python3:*), Read, Write, Glob, Grep
