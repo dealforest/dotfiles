@@ -52,7 +52,7 @@
       "Bash(npm uninstall:*)",
       "Bash(npm remove:*)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "hooks": {
     "Notification": [
