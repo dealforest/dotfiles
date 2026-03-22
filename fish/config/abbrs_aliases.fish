@@ -86,14 +86,14 @@ abbr -a n -f _na
 abbr --position anywhere deal dealforest
 
 # claude code
-abbr -a -- cc 'claude code'
-abbr -a -- ccd 'claude code --sandbox --dangerously-skip-permissions'
+abbr -a -- cc 'safehouse claude code'
+abbr -a -- ccd 'safehouse claude code --dangerously-skip-permissions'
 
 # tmux
 abbr -a tm 'tmux new -s'
 abbr -a tma 'fzf_tmux_attach'
 abbr -a tmc 'tmux-claude-layout'
-abbr -a tmcd 'tmux-claude-layout "--sandbox --dangerously-skip-permissions"'
+abbr -a tmcd 'tmux-claude-layout "--dangerously-skip-permissions"'
 abbr -a tmk 'tmux kill-window'
 abbr -a tmka 'tmux kill-window -a'
 abbr -a tml 'tmux ls'
@@ -108,9 +108,9 @@ abbr -a phs 'phantom shell --fzf'
 abbr -a phw 'phantom where --fzf'
 
 # phantom + Claude Code
-abbr -a phcc 'phantom exec --fzf claude'
-abbr -a phccd 'phantom exec --fzf claude --sandbox --dangerously-skip-permissions'
-abbr -a phtc 'phantom shell --fzf --tmux --exec claude'
+abbr -a phcc 'phantom exec --fzf safehouse claude'
+abbr -a phccd 'phantom exec --fzf safehouse claude --dangerously-skip-permissions'
+abbr -a phtc 'phantom shell --fzf --tmux --exec safehouse claude'
 
 # GitHub PR + Claude Code
 abbr -a phgh 'phantom github checkout'
