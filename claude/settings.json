@@ -1,7 +1,8 @@
 {
   "env": {
     "ENABLE_LSP_TOOL": "1",
-    "ENABLE_TOOL_SEARCH": "1"
+    "ENABLE_TOOL_SEARCH": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "attribution": {
     "commit": "",
@@ -51,16 +52,16 @@
       "Bash(npm uninstall:*)",
       "Bash(npm remove:*)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "hooks": {
-    "Notification": [
+    "PreToolUse": [
       {
-        "matcher": "idle_prompt",
+        "matcher": "AskUserQuestion",
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/scripts/notify.sh '入力待ちです' default"
+            "command": "~/.claude/scripts/notify.sh '質問があります' Blow"
           }
         ]
       }
@@ -86,7 +87,10 @@
     "frontend-design@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
-    "reviw-plugin@reviw-plugins": true
+    "reviw-plugin@reviw-plugins": true,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true,
+    "claude-md-management@claude-plugins-official": true
   },
   "sandbox": {
     "allowUnsandboxedCommands": true,
@@ -103,5 +107,8 @@
       "~/.config/gh"
     ]
   },
-  "plansDirectory": "./.plans"
+  "plansDirectory": "./.plans",
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "teammateMode": "tmux"
 }

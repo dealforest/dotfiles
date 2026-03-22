@@ -1,6 +1,6 @@
 ---
 name: managing-mcp
-description: mmcp を使って MCP サーバーを追加・削除・管理する。MCP 追加、MCP 削除、MCP 管理と言及された時に使用。
+description: mmcpを使ってMCPサーバーを追加・削除・一覧表示・設定適用する。「MCP追加」「MCP削除」「MCP管理」「MCPサーバー入れて」「MCPを設定して」「MCP server追加」「MCPの一覧」「mmcp」と言及された時に使用。Dockerベースの設定にも対応。
 context: fork
 allowed-tools: Bash(npx mmcp:*), Read, Edit
 ---

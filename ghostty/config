@@ -24,5 +24,7 @@ keybind = ctrl+m=text:\r
 
 keybind = global:ctrl+tab=toggle_quick_terminal
 
+desktop-notifications = true
+
 macos-option-as-alt = true
 keybind = shift+enter=text:\n

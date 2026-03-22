@@ -1,6 +1,6 @@
 ---
 name: committing
-description: Conventional Commits形式でgitコミットを作成する。コミット、commit、変更をコミットと言及された時に使用。
+description: Conventional Commits形式でgitコミットを作成する。「コミット」「commit」「変更をコミット」「コミットして」「コミットお願い」「この変更を保存」「git commit」「変更を記録」と言及された時に使用。hunk単位でステージングしコミットメッセージを自動生成する。プッシュやPR作成は対象外。
 context: fork
 agent: general-purpose
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*), Bash(git restore:*), Bash(git log:*)

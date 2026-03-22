@@ -25,6 +25,10 @@
         "ghcr.io/giginet/xcodeproj-mcp-server",
         "/workspace"
       ]
+    },
+    "cupertino": {
+      "command": "/opt/homebrew/bin/cupertino",
+      "args": ["serve"]
     }
   }
 }

@@ -1,6 +1,8 @@
 ---
 name: ios-simulator-photo-library-opener
-description: 起動中のiOSシミュレータの写真ライブラリをFinderで開く。シミュレータの写真を確認したい時に使用。
+description: 起動中のiOSシミュレータの写真ライブラリをFinderで開く。「シミュレータの写真」「写真ライブラリを開いて」「シミュレータの画像を確認」「撮影した写真を見たい」「スクリーンショットを確認」と言及された時に使用。
+context: fork
+allowed-tools: Bash(xcrun:*), Bash(open:*), Bash(jq:*)
 ---
 
 # iOS シミュレータの写真ライブラリを開く

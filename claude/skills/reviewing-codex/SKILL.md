@@ -1,6 +1,6 @@
 ---
 name: reviewing-codex
-description: Codex CLI を使ってコードレビューを依頼し反復的に改善する。Codex にレビュー依頼、Codex に質問と言及された時に使用。
+description: Codex CLIを使って反復的なコードレビューと改善を行う。「Codexにレビュー依頼」「Codexでレビュー」「Codexにコードレビュー」「コードを見てもらって」と言及された時に使用。指摘がなくなるまで修正と再レビューを繰り返す。単発の質問にはasking-codexスキルを使用。
 context: fork
 agent: general-purpose
 allowed-tools: Bash(codex:*)

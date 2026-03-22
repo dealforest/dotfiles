@@ -1,6 +1,6 @@
 ---
 name: asking-codex
-description: Codex CLI を使ってコードレビューを依頼する。Codex にレビュー依頼、Codex に質問と言及された時に使用。
+description: Codex CLIを使って単発の質問や確認を行う。「Codexに質問」「Codexに聞いて」「Codexに確認して」「codex exec」と言及された時に使用。1回の実行で結果を返す。反復的なコードレビューにはreviewing-codexスキルを使用。
 context: fork
 allowed-tools: Bash(codex:*)
 ---
