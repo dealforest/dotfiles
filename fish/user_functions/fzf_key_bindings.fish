@@ -118,13 +118,13 @@ function fzf_key_bindings
 
         if test "$key" = alt-enter
             set -l action (printf "%s\n" \
-                "claude code" cursor code lazygit "gh repo view -w" open \
+                "safehouse claude code" cursor code lazygit "gh repo view -w" open \
                 | fzf --prompt="Action for $path> " --height 30% --reverse)
 
             cd $root_dir/(builtin string trim "$path")
             switch $action
-                case claude code
-                    claude code
+                case 'safehouse claude code'
+                    safehouse claude code
                 case cursor
                     cursor .
                 case code
@@ -255,13 +255,13 @@ function fzf_key_bindings
 
         if test "$key" = alt-enter
             set -l action (printf "%s\n" \
-                "claude code" cursor code lazygit "gh repo view -w" open \
+                "safehouse claude code" cursor code lazygit "gh repo view -w" open \
                 | fzf --prompt="Action for $path> " --height 30% --reverse)
 
             eval "cd $root_dir/$path"
             switch $action
-                case claude code
-                    eval "claude code"
+                case 'safehouse claude code'
+                    eval "safehouse claude code"
                 case cursor
                     eval "cursor ."
                 case code

@@ -29,9 +29,9 @@ function tmux-claude-layout -d "Create dev layout with tig and claude"
 
     set -l name (basename (pwd))
 
-    set -l claude_cmd "claude"
+    set -l claude_cmd "safehouse claude"
     if test (count $claude_args_list) -gt 0
-        set claude_cmd "claude $claude_args_list"
+        set claude_cmd "safehouse claude $claude_args_list"
     end
     if test -n "$issue_url"
         set claude_cmd "$claude_cmd $issue_url"
