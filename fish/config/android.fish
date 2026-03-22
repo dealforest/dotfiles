@@ -1,4 +1,4 @@
-set -Ux JAVA_HOME ( /usr/libexec/java_home -v 17 )
+set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 fish_add_path $JAVA_HOME/bin
 
 set -Ux ANDROID_HOME $HOME/Library/Android/sdk
