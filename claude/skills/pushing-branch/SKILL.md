@@ -1,6 +1,6 @@
 ---
 name: pushing-branch
-description: コミット済みの変更をリモートリポジトリにプッシュする。プッシュ、push、リモートに反映と言及された時に使用。
+description: コミット済みの変更をリモートにプッシュし、PRを作成・更新する。「プッシュ」「push」「リモートに反映」「PRを作成」「PR作って」「プルリクエスト」「リモートに上げて」「pushして」と言及された時に使用。コミット作成は対象外。PRのレビューやマージは対象外。
 context: fork
 agent: general-purpose
 allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git remote:*), Bash(gh:*)
@@ -8,14 +8,24 @@ allowed-tools: Bash(git push:*), Bash(git status:*), Bash(git log:*), Bash(git r
 
 # ブランチのプッシュと PR 管理
 
+## 対象ブランチの決定
+
+- 引数あり（例: `/pushing-branch feature/maestro`）: 指定されたブランチを対象にする。**checkout は不要**。各コマンドでブランチ名を明示的に指定する。
+  - プッシュ: `git push origin feature/maestro`
+  - ログ確認: `git log origin/develop..feature/maestro`
+  - PR 作成: `gh pr create --head feature/maestro`
+  - PR 確認: `gh pr list --head feature/maestro`
+- 引数なし（例: `/pushing-branch`）: 現在のブランチを対象にする
+
 ## ワークフロー
 
-1. プッシュすべきコミットがあるか確認
-2. 未プッシュのコミットがあればリモートにプッシュ
-3. PR の存在確認
+1. 対象ブランチを決定する（引数があればそのブランチ、なければ現在のブランチ）
+2. プッシュすべきコミットがあるか確認
+3. 未プッシュのコミットがあればリモートにプッシュ
+4. PR の存在確認
    - PR がある場合: PR の詳細を更新
    - PR がない場合: 新規 PR を作成
-4. 結果を報告
+5. 結果を報告
 
 ## 結果の報告
 
