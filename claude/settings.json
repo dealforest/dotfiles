@@ -88,9 +88,9 @@
     "lua-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
     "reviw-plugin@reviw-plugins": true,
-    "playwright-cli@playwright-cli": true,
     "document-skills@anthropic-agent-skills": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "claude-md-management@claude-plugins-official": true
   },
   "sandbox": {
     "allowUnsandboxedCommands": true,
