@@ -108,5 +108,7 @@
     ]
   },
   "plansDirectory": "./.plans",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "teammateMode": "tmux"
 }
