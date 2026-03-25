@@ -46,7 +46,7 @@ packages:
   - name: direnv/direnv@v2.37.1
   - name: gohugoio/hugo@v0.158.0
   - name: projectdiscovery/httpx@v1.9.0
-  - name: dandavison/delta@0.19.0
+  - name: dandavison/delta@0.19.1
   - name: rhysd/dotfiles@v0.2.3
   - name: Aloxaf/silicon@v0.5.3
   - name: wader/fq@v0.17.0
