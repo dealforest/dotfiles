@@ -23,7 +23,7 @@ packages:
   - name: jesseduffield/lazygit@v0.60.0
   - name: BurntSushi/ripgrep@15.1.0
   - name: sharkdp/fd@v10.4.2
-  - name: aquaproj/registry-tool@v0.5.0
+  - name: aquaproj/registry-tool@v0.5.1
   - name: marp-team/marp-cli@v4.3.1
   - name: tcnksm/ghr@v0.18.0
   - name: x-motemen/ghq@v1.9.4
