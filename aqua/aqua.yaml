@@ -80,7 +80,7 @@ packages:
   - name: orf/gping@gping-v1.20.1
   - name: pemistahl/grex@v1.4.6
   - name: charmbracelet/glow@v2.1.1
-  - name: simeji/jid@v1.0.0
+  - name: simeji/jid@v1.1.1
   - name: aquasecurity/trivy@v0.69.3
   - name: itchyny/mmv@v0.1.6
   - name: goodwithtech/dockle@v0.4.15
