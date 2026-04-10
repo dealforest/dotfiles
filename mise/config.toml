@@ -1,5 +1,5 @@
 [tools]
-python = "3.14.3"
+python = "3.14.4"
 ruby = "4.0.2"
 go = "1.26.1"
 node = "25.9.0"
