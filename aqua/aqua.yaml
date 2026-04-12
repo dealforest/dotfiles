@@ -100,7 +100,7 @@ packages:
   - name: astral-sh/ruff@0.15.9
   - name: ducaale/xh@v0.25.3
   - name: xo/usql@v0.21.4
-  - name: sharkdp/vivid@v0.10.1
+  - name: sharkdp/vivid@v0.11.0
   - name: ynqa/jnv@v0.7.1
   - name: charmbracelet/freeze@v0.2.2
   - name: sqls-server/sqls@v0.2.45
