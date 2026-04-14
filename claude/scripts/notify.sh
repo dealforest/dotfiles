@@ -35,17 +35,18 @@ elif [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" 
 fi
 
 if [ -n "$EXECUTE_CMD" ]; then
-    terminal-notifier \
+    (terminal-notifier \
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
         -sender "com.mitchellh.ghostty" \
-        -execute "$EXECUTE_CMD"
+        -execute "$EXECUTE_CMD" >/dev/null 2>&1 &) &
 else
-    terminal-notifier \
+    (terminal-notifier \
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
         -sender "com.mitchellh.ghostty" \
-        -activate "com.mitchellh.ghostty"
+        -activate "com.mitchellh.ghostty" >/dev/null 2>&1 &) &
 fi
+exit 0
