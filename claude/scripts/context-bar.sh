@@ -196,7 +196,10 @@ line2+="${C_RESET}"
 
 printf '%b\n' "$line2"
 
-# === LINE 3: ccusage daily/monthly costs ===
+# === LINE 3: ccusage daily/monthly costs (cached) ===
+CCUSAGE_CACHE="/tmp/ccusage_statusline_cache"
+CCUSAGE_TTL=300  # 5 minutes
+
 today=$(date +%Y%m%d)
 month_start=$(date +%Y%m01)
 month_label=$(date +%Y/%m)
@@ -204,34 +207,48 @@ month_label=$(date +%Y/%m)
 daily_cost=""
 monthly_cost=""
 
-# Get daily cost
-daily_json=$(npx --yes ccusage daily --json --since "$today" --offline 2>/dev/null)
-if [[ -n "$daily_json" ]]; then
-    daily_usd=$(echo "$daily_json" | jq -r '.daily[0].totalCost // 0')
-    if [[ -n "$daily_usd" ]] && (( $(echo "$daily_usd > 0" | bc -l 2>/dev/null) )); then
-        daily_fmt=$(printf '%.2f' "$daily_usd" 2>/dev/null)
-        daily_cost="\$${daily_fmt}"
+# Use cache if fresh enough
+cache_valid=false
+if [[ -f "$CCUSAGE_CACHE" ]]; then
+    cache_age=$(( $(date +%s) - $(stat -f%m "$CCUSAGE_CACHE") ))
+    if [[ $cache_age -lt $CCUSAGE_TTL ]]; then
+        cache_valid=true
     fi
 fi
 
-# Get monthly cost
-monthly_json=$(npx --yes ccusage monthly --json --since "$month_start" --offline 2>/dev/null)
-if [[ -n "$monthly_json" ]]; then
-    monthly_usd=$(echo "$monthly_json" | jq -r '.monthly[0].totalCost // 0')
-    if [[ -n "$monthly_usd" ]] && (( $(echo "$monthly_usd > 0" | bc -l 2>/dev/null) )); then
-        monthly_fmt=$(printf '%.2f' "$monthly_usd" 2>/dev/null)
-        monthly_cost="\$${monthly_fmt}"
+if $cache_valid; then
+    source "$CCUSAGE_CACHE"
+else
+    # Get daily cost
+    daily_json=$(ccusage daily --json --since "$today" --offline 2>/dev/null)
+    if [[ -n "$daily_json" ]]; then
+        daily_usd=$(echo "$daily_json" | jq -r '.daily[0].totalCost // 0')
+        if [[ -n "$daily_usd" ]] && (( $(echo "$daily_usd > 0" | bc -l 2>/dev/null) )); then
+            daily_cost=$(printf '%.2f' "$daily_usd" 2>/dev/null)
+        fi
     fi
+
+    # Get monthly cost
+    monthly_json=$(ccusage monthly --json --since "$month_start" --offline 2>/dev/null)
+    if [[ -n "$monthly_json" ]]; then
+        monthly_usd=$(echo "$monthly_json" | jq -r '.monthly[0].totalCost // 0')
+        if [[ -n "$monthly_usd" ]] && (( $(echo "$monthly_usd > 0" | bc -l 2>/dev/null) )); then
+            monthly_cost=$(printf '%.2f' "$monthly_usd" 2>/dev/null)
+        fi
+    fi
+
+    # Write cache
+    printf 'daily_cost="%s"\nmonthly_cost="%s"\n' "$daily_cost" "$monthly_cost" > "$CCUSAGE_CACHE"
 fi
 
 if [[ -n "$daily_cost" || -n "$monthly_cost" ]]; then
     line3=""
     if [[ -n "$daily_cost" ]]; then
-        line3+="💰 ${C_GRAY}Today ${daily_cost}"
+        line3+="💰 ${C_GRAY}Today \$${daily_cost}"
     fi
     if [[ -n "$monthly_cost" ]]; then
         [[ -n "$line3" ]] && line3+=" | "
-        line3+="${C_GRAY}${month_label} ${monthly_cost}"
+        line3+="${C_GRAY}${month_label} \$${monthly_cost}"
     fi
     line3+="${C_RESET}"
     printf '%b\n' "$line3"
