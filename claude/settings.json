@@ -114,5 +114,6 @@
   "plansDirectory": "./.plans",
   "skipDangerousModePermissionPrompt": true,
   "skipAutoPermissionPrompt": true,
-  "teammateMode": "tmux"
+  "teammateMode": "tmux",
+  "effortLevel": "high"
 }
