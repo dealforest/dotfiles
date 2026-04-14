@@ -84,13 +84,13 @@ if test "$FISH_CONFIG" -nt "$CONFIG_CACHE"
     # homebrew
     if test (uname -m) = arm64
         echo $(/opt/homebrew/bin/brew shellenv) >>$CONFIG_CACHE
-        echo "set -gx PATH /opt/homebrew/opt/llvm/bin $PATH" >>$CONFIG_CACHE
+        echo "fish_add_path -gP /opt/homebrew/opt/llvm/bin" >>$CONFIG_CACHE
     else
         echo $(/usr/local/bin/brew shellenv) >>$CONFIG_CACHE
     end
 
     # xcode
-    echo "fish_add_path $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
+    echo "fish_add_path -gP $(ensure_installed xcode-select -p)/usr/bin" >>$CONFIG_CACHE
 
     # tools
     ensure_installed direnv hook fish >>$CONFIG_CACHE
