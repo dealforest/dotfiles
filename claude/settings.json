@@ -32,6 +32,8 @@
       "Bash(rm:~)",
       "Bash(rm:~/*)",
       "Bash(mkdir:/**)",
+      "Bash(git push -f)",
+      "Bash(git push --force)",
       "Read(.env*)",
       "Read(**/*id_ed25519*)",
       "Read(**/*id_rsa*)",
