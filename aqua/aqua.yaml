@@ -105,7 +105,7 @@ packages:
   - name: charmbracelet/freeze@v0.2.2
   - name: sqls-server/sqls@v0.2.45
   - name: ClementTsang/bottom@0.12.3
-  - name: graelo/pumas@v0.4.0
+  - name: graelo/pumas@v0.5.0
   - name: sachaos/viddy@v1.3.0
   - name: hatoo/oha@v1.14.0
   - name: abhimanyu003/sttr@v0.2.30
