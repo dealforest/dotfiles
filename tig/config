@@ -34,7 +34,7 @@ bind generic xym @sh -c "git find-merge %(commit) HEAD | pbcopy"
 bind main xo !hub browse -- commit/%(commit)
 bind main xt !?git tag "%(prompt Enter new tag name: )" %(commit)
 bind main xT !?git tag -d "%(tag)"
-bind main xr !git rebase --autosquash -i %(commit)
+bind main xr !git rebase --autosquash --empty=drop -i %(commit)
 bind main xd !npx difit %(commit)
 bind main xa !?git commit --amend
 bind main xf !?git commit --fixup %(commit)

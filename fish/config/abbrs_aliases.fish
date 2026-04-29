@@ -85,21 +85,21 @@ abbr -a --set-cursor qgh gh copilot suggest -t gh \"%\"
 abbr -a n -f _na
 abbr --position anywhere deal dealforest
 
-# claude code
-abbr -a -- cc claude
-abbr -a -- ccd sandbox-claude
+# codex
+abbr -a -- cc codex
+abbr -a -- ccd sandbox-codex
 
 # tmux
 abbr -a tm 'tmux new -s'
 abbr -a tma 'fzf_tmux_attach'
-abbr -a tmc 'tmux-claude-layout'
-abbr -a tmcd 'tmux-claude-layout --dangerously-skip-permissions'
+abbr -a tmc 'tmux-codex-layout'
+abbr -a tmcd 'tmux-codex-layout --dangerously-bypass-approvals-and-sandbox'
 abbr -a tmk 'tmux kill-window'
 abbr -a tmka 'tmux kill-window -a'
 abbr -a tml 'tmux ls'
-abbr -a tmm 'tmux-claude-monitor-layout'
+abbr -a tmm 'tmux-codex-monitor-layout'
 
-# phantom (Claude Code 並列実行向け)
+# phantom (並列実行向け)
 abbr -a ph phantom
 abbr -a phc 'phantom create'
 abbr -a phl 'phantom list'
@@ -107,10 +107,10 @@ abbr -a phd 'phantom delete --fzf'
 abbr -a phs 'phantom shell --fzf'
 abbr -a phw 'phantom where --fzf'
 
-# phantom + Claude Code
-abbr -a phcc 'phantom exec --fzf claude'
-abbr -a phccd 'phantom exec --fzf sandbox-claude'
-abbr -a phtc 'phantom shell --fzf --tmux --exec claude'
+# phantom + Codex
+abbr -a phcc 'phantom exec --fzf codex'
+abbr -a phccd 'phantom exec --fzf sandbox-codex'
+abbr -a phtc 'phantom shell --fzf --tmux --exec codex'
 
 # GitHub PR + Claude Code
 abbr -a phgh 'phantom github checkout'

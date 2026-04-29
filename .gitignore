@@ -17,5 +17,13 @@ claude/telemetry/
 claude/paste-cache/
 claude/tasks/
 claude/todos/
+
+# Codex - track config, ignore runtime state
+codex/*
+!codex/config.toml
+!codex/rules/
+!codex/rules/**
+!codex/scripts/
+!codex/scripts/**
 .plans/
 .playwright-cli/

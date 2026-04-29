@@ -6,5 +6,6 @@
   "tig": "~/.config/tig",
   "lazygit": "~/.config/lazygit",
   "claude": "~/.claude",
+  "codex": "~/.codex",
   "secretlint/.secretlintrc.json": "~/.secretlintrc.json"
 }

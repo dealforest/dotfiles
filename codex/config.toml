@@ -1,0 +1,68 @@
+personality = "pragmatic"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+plan_mode_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+notify = ["bash", "-lc", "bash \"$HOME/.codex/scripts/notify.sh\""]
+file_opener = "vscode"
+
+[projects."/Users/dealforest/.ghq/github.com/gaiwaya-development/mood-board"]
+trust_level = "trusted"
+
+[projects."/Users/dealforest/.ghq/github.com/chikei-development/bancs_ios/.git/modules"]
+trust_level = "trusted"
+
+[projects."/Users/dealforest/.ghq/github.com/dealforest/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/dealforest/.ghq/github.com/ubiregiinc/ubiregi-client"]
+trust_level = "trusted"
+
+[sandbox_workspace_write]
+network_access = false
+
+[tui]
+notifications = ["agent-turn-complete", "approval-requested"]
+notification_condition = "always"
+# Closest built-in approximation to the Claude Code context bar.
+status_line = ["model-with-reasoning", "git-branch", "current-dir", "context-remaining"]
+terminal_title = ["spinner", "git-branch", "project"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[mcp_servers]
+xcodeproj.command = "docker"
+xcodeproj.args = ["run", "--rm", "-i", "-v", "${PWD}:/workspace", "ghcr.io/giginet/xcodeproj-mcp-server", "/workspace"]
+cupertino.command = "/opt/homebrew/bin/cupertino"
+cupertino.args = ["serve"]
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp@latest"]
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-04-29T05:07:40Z"
+source_type = "local"
+source = "/Users/dealforest/.ghq/github.com/dealforest/dotfiles/codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-04-29T00:46:02Z"
+source_type = "local"
+source = "/Users/dealforest/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
