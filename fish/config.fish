@@ -113,6 +113,10 @@ if test -e "$FISH_LOCAL_CONFIG"
     source $FISH_LOCAL_CONFIG
 end
 
+# Prefer aqua-managed shims over Homebrew when both provide a command.
+set -q AQUA_ROOT_DIR || set -gx AQUA_ROOT_DIR $XDG_DATA_HOME/aquaproj-aqua
+fish_add_path --global --path --prepend --move $AQUA_ROOT_DIR/bin
+
 # neovim
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
