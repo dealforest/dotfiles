@@ -1,0 +1,108 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "shell": "fish",
+  "snapshot": true,
+  "autoupdate": "notify",
+  "share": "manual",
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
+  "tool_output": {
+    "max_lines": 2000,
+    "max_bytes": 51200
+  },
+  "watcher": {
+    "ignore": [
+      "node_modules",
+      ".git",
+      "dist",
+      "build",
+      "target",
+      "*.lock",
+      ".DS_Store"
+    ]
+  },
+  "instructions": [
+    "~/.config/opencode/instructions/*.md"
+  ],
+  "permission": {
+    "read": "allow",
+    "edit": "ask",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": {
+      "git*": "allow",
+      "gh*": "allow",
+      "tmux*": "allow",
+      "docker*": "allow",
+      "npm*": "allow",
+      "npx*": "allow",
+      "find*": "allow",
+      "echo*": "allow",
+      "jq*": "allow",
+      "ps*": "allow",
+      "kill*": "allow",
+      "chmod*": "allow",
+      "tree*": "allow",
+      "glow*": "allow",
+      "aqua*": "allow",
+      "python3*": "allow",
+      "starship*": "allow",
+      "viddy*": "allow",
+      "terminal-notifier*": "allow",
+      "osascript*": "allow",
+      "ghostty*": "allow",
+      "claude config*": "allow",
+      "gwq*": "allow",
+      "col*": "allow",
+      "pstree*": "allow",
+      "wait": "allow",
+      "*": "ask"
+    },
+    "task": "ask",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "codesearch": "allow",
+    "lsp": "allow",
+    "skill": "allow",
+    "todowrite": "ask",
+    "question": "ask",
+    "doom_loop": "ask"
+  },
+  "agent": {
+    "commit-maker": {
+      "description": "Create commits using conventional commits. Use when asked to commit, コミットして, 変更をコミット.",
+      "mode": "subagent",
+      "prompt": "変更を分析し、意味のある最小単位で分割して Conventional Commits 形式でコミットを作成する。\n\nrules/conventional-commits.md と rules/git-commit-granularity.md のルールに従う。"
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
+      "enabled": true
+    },
+    "xcodeproj": {
+      "type": "local",
+      "command": ["docker", "run", "--pull=always", "--rm", "-i", "-v", "{env:PWD}:/workspace", "ghcr.io/giginet/xcodeproj-mcp-server:latest", "/workspace"],
+      "enabled": true
+    },
+    "cupertino": {
+      "type": "local",
+      "command": ["/opt/homebrew/bin/cupertino", "serve"],
+      "enabled": true
+    }
+  },
+  "command": {
+    "notify": {
+      "template": "Send a macOS notification with the message: $ARGUMENTS\n\n!~/.config/opencode/scripts/notify.sh \"$ARGUMENTS\"",
+      "description": "Send macOS notification via terminal-notifier and activate Ghostty window"
+    },
+    "usage-status": {
+      "template": "Display usage status showing model name, git branch, diff stats, context usage, and rate limits.\n\n!~/.config/opencode/scripts/usage-status.sh",
+      "description": "Show usage status with model limits and costs"
+    }
+  }
+}
