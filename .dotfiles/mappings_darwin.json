@@ -7,5 +7,6 @@
   "lazygit": "~/.config/lazygit",
   "claude": "~/.claude",
   "codex": "~/.codex",
-  "secretlint/.secretlintrc.json": "~/.secretlintrc.json"
+  "secretlint/.secretlintrc.json": "~/.secretlintrc.json",
+  "opencode": "~/.config/opencode"
 }
