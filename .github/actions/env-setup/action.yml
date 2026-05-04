@@ -15,6 +15,7 @@ runs:
       uses: actions/setup-go@v6
       with:
         go-version: 'stable'
+        cache: false
     - name: Install aqua
       uses: aquaproj/aqua-installer@v4.0.4
       with:
@@ -24,3 +25,6 @@ runs:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         AQUA_CONFIG: ${{ inputs.aqua_config }}
         AQUA_LOG_COLOR: always
+    - name: Add aqua bin to PATH
+      shell: bash
+      run: echo "$HOME/.local/share/aquaproj-aqua/bin" >> "$GITHUB_PATH"
