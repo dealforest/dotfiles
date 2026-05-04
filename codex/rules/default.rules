@@ -1,0 +1,8 @@
+prefix_rule(pattern=["git", "fetch", "origin"], decision="allow")
+prefix_rule(pattern=["git", "worktree", "add"], decision="allow")
+prefix_rule(pattern=["npm", "ci"], decision="allow")
+prefix_rule(pattern=["gh", "pr", ["view", "diff"]], decision="allow")
+prefix_rule(pattern=["docker", "compose", ["ps", "logs", "exec", "up", "down", "restart", "build"]], decision="allow")
+prefix_rule(pattern=["sudo"], decision="forbidden", justification="Use Codex approvals or the safehouse wrapper instead.")
+prefix_rule(pattern=["git", "push", ["-f", "--force"]], decision="forbidden", justification="Use a non-force push or review the branch manually.")
+prefix_rule(pattern=["rm"], decision="prompt", justification="Review deletions manually before running them outside the sandbox.")

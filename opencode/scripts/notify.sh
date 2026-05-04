@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Code notification script
+# OpenCode notification script
 # Usage: notify.sh <message> [sound]
 # Sends a macOS notification via terminal-notifier.
 # Clicking the notification brings Ghostty to front and switches to the tmux pane.
@@ -20,7 +20,7 @@ if [ -n "$TMUX" ]; then
 fi
 
 # Build title
-TITLE="Claude Code"
+TITLE="OpenCode"
 if [ -n "$TMUX_TITLE" ]; then
     TITLE="Claude Code - $TMUX_TITLE"
 fi

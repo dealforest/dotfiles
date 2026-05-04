@@ -1,12 +1,12 @@
-function tmux-claude-layout -d "Create dev layout with tig and claude"
+function tmux-codex-layout -d "Create dev layout with tig and Codex"
     set -l issue_url ""
-    set -l claude_args_list
+    set -l codex_args_list
 
     for arg in $argv
         if string match -qr '^https?://.*/(issues|pull)/[0-9]+' $arg
             set issue_url $arg
         else
-            set -a claude_args_list $arg
+            set -a codex_args_list $arg
         end
     end
 
@@ -29,40 +29,40 @@ function tmux-claude-layout -d "Create dev layout with tig and claude"
 
     set -l name (basename (pwd))
 
-    set -l claude_base claude
-    if contains -- "--dangerously-skip-permissions" $claude_args_list
-        set claude_base sandbox-claude
-        set -l idx (contains -i -- "--dangerously-skip-permissions" $claude_args_list)
-        set -e claude_args_list[$idx]
+    set -l codex_base codex
+    for danger_flag in --dangerously-bypass-approvals-and-sandbox --dangerously-skip-permissions
+        if contains -- $danger_flag $codex_args_list
+            set codex_base sandbox-codex
+            set -l idx (contains -i -- $danger_flag $codex_args_list)
+            set -e codex_args_list[$idx]
+        end
     end
 
-    set -l claude_cmd $claude_base
-    if test (count $claude_args_list) -gt 0
-        set claude_cmd "$claude_base $claude_args_list"
+    set -l codex_cmd $codex_base
+    if test (count $codex_args_list) -gt 0
+        set codex_cmd "$codex_base $codex_args_list"
     end
     if test -n "$issue_url"
-        set claude_cmd "$claude_cmd $issue_url"
+        set codex_cmd "$codex_cmd $issue_url"
     end
 
     set -l viddy_cmd "viddy -- 'f=\$(ls -t .plans/*.md 2>/dev/null | head -1); echo \"\$f\"; CLICOLOR_FORCE=1 glow --style dark \"\$f\" 2>/dev/null || echo \"No plan files found\"'"
 
     if test -z "$TMUX"
-        # tmux 外: 新規セッションを作成してアタッチ
         tmux new-session -d -s $name
         tmux attach-session -t $name \; \
             split-window -v -p 50 \; \
             split-window -h -t 0 \; \
             send-keys -t 0 'tig' C-m \; \
             send-keys -t 1 $viddy_cmd C-m \; \
-            send-keys -t 2 $claude_cmd C-m \; \
+            send-keys -t 2 $codex_cmd C-m \; \
             select-pane -t 2
     else
-        # tmux 内: 現在のウィンドウで分割を実行
         tmux split-window -v -p 50
         tmux split-window -h -t 0
         tmux send-keys -t 0 'tig' C-m
         tmux send-keys -t 1 $viddy_cmd C-m
-        tmux send-keys -t 2 $claude_cmd C-m
+        tmux send-keys -t 2 $codex_cmd C-m
         tmux select-pane -t 2
     end
 end
