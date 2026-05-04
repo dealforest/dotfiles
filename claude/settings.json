@@ -111,9 +111,12 @@
       "~/.config/gh"
     ]
   },
+  "effortLevel": "high",
   "plansDirectory": "./.plans",
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true,
+  "theme": "dark",
   "teammateMode": "tmux",
-  "effortLevel": "high"
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
