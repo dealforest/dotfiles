@@ -47,7 +47,7 @@ packages:
   - name: projectdiscovery/httpx@v1.9.0
   - name: dandavison/delta@0.19.2
   - name: rhysd/dotfiles@v0.2.3
-  - name: Aloxaf/silicon@v0.5.3
+  - name: Aloxaf/silicon@v0.5.2
   - name: wader/fq@v0.17.0
   - name: planetscale/cli@v0.282.0
   - name: supabase/cli@v2.95.4
