@@ -1,0 +1,26 @@
+layout {
+  swap_tiled_layout name="rot0" {
+    tab exact_panes=4 {
+      pane
+      pane split_direction="vertical" { pane; pane; pane }
+    }
+  }
+  swap_tiled_layout name="rot1" {
+    tab exact_panes=4 {
+      pane
+      pane split_direction="vertical" { pane; pane; pane }
+    }
+  }
+  swap_tiled_layout name="rot2" {
+    tab exact_panes=4 {
+      pane
+      pane split_direction="vertical" { pane; pane; pane }
+    }
+  }
+  swap_tiled_layout name="rot3" {
+    tab exact_panes=4 {
+      pane
+      pane split_direction="vertical" { pane; pane; pane }
+    }
+  }
+}
