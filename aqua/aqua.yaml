@@ -124,5 +124,5 @@ packages:
   - name: secretlint/secretlint@v12.3.1
   - name: koki-develop/gat@v0.27.2
   - name: mislav/hub@v2.14.2
-  - name: ollama/ollama@v0.22.1
+  - name: ollama/ollama@v0.23.0
   - name: jdx/mise@v2026.4.28
