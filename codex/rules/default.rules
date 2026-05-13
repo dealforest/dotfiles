@@ -18,3 +18,4 @@ prefix_rule(pattern=["git", "commit", "-m", "chore: add gitleaks pre-commit hook
 prefix_rule(pattern=["git", "add", "claude/skills/committing/SKILL.md", "opencode/commands/commit.md"], decision="allow")
 prefix_rule(pattern=["git", "commit", "-m", "docs: require branch before committing"], decision="allow")
 prefix_rule(pattern=["git", "add", "codex/rules/default.rules"], decision="allow")
+prefix_rule(pattern=["git", "commit", "-m", "chore: update codex command approvals"], decision="allow")
