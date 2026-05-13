@@ -20,9 +20,20 @@ if [ -n "$TMUX" ]; then
 fi
 
 # Build title
-TITLE="OpenCode"
-if [ -n "$TMUX_TITLE" ]; then
-    TITLE="Claude Code - $TMUX_TITLE"
+current_dir_suffix=$(basename "$PWD")
+TITLE=""
+
+if [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ] && [ -n "$TMUX_TITLE" ]; then
+    TITLE="[$TMUX_SESSION] - [$TMUX_TITLE]: $current_dir_suffix"
+elif [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ]; then
+    TITLE="[$TMUX_SESSION] - [$TMUX_WINDOW]: $current_dir_suffix"
+else
+    terminal_name="${TERM_PROGRAM:-$TERM}"
+    [ -z "$terminal_name" ] && terminal_name="Terminal"
+    if [[ "$terminal_name" == xterm-* ]]; then
+        terminal_name="${terminal_name#xterm-}"
+    fi
+    TITLE="[$terminal_name]: $current_dir_suffix"
 fi
 
 # Build -execute command: AppleScript to activate Ghostty window + switch tmux pane

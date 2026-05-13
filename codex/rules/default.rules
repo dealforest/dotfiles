@@ -19,3 +19,8 @@ prefix_rule(pattern=["git", "add", "claude/skills/committing/SKILL.md", "opencod
 prefix_rule(pattern=["git", "commit", "-m", "docs: require branch before committing"], decision="allow")
 prefix_rule(pattern=["git", "add", "codex/rules/default.rules"], decision="allow")
 prefix_rule(pattern=["git", "commit", "-m", "chore: update codex command approvals"], decision="allow")
+prefix_rule(pattern=["ps", "-axo", "pid,ppid,command"], decision="allow")
+prefix_rule(pattern=["fish", "-lc", "codex-install-native"], decision="allow")
+prefix_rule(pattern=["kill", "61305", "61285"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "commit"], decision="allow")
