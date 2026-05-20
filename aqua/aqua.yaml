@@ -53,7 +53,7 @@ packages:
   - name: supabase/cli@v2.98.2
   - name: hadolint/hadolint@v2.14.0
   - name: noborus/trdsql@v1.2.1
-  - name: JohnnyMorganz/StyLua@v2.4.1
+  - name: JohnnyMorganz/StyLua@v2.5.2
   - name: mattn/efm-langserver@v0.0.56
   - name: cloudflare/cloudflared@2026.5.0
   - name: wasmerio/wasmer@v7.1.0
