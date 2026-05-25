@@ -113,7 +113,7 @@ packages:
   - name: nishanths/license@v5.0.4
   - name: jetify-com/devbox@0.17.2
   - name: dduan/tre@v0.4.0
-  - name: astral-sh/uv@0.11.15
+  - name: astral-sh/uv@0.11.16
   - name: mikefarah/yq@v4.53.2
   - name: sheepla/srss@v0.1.0
   - name: fastfetch-cli/fastfetch@2.63.1
