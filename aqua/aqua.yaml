@@ -122,7 +122,7 @@ packages:
   - name: tamasfe/taplo@0.10.0
   - name: jj-vcs/jj@v0.41.0
   - name: secretlint/secretlint@v13.0.2
-  - name: koki-develop/gat@v0.27.3
+  - name: koki-develop/gat@v0.30.0
   - name: mislav/hub@v2.14.2
   - name: ollama/ollama@v0.30.0
   - name: jdx/mise@v2026.5.16
