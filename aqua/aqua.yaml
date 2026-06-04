@@ -125,4 +125,4 @@ packages:
   - name: koki-develop/gat@v0.30.0
   - name: mislav/hub@v2.14.2
   - name: ollama/ollama@v0.30.0
-  - name: jdx/mise@v2026.5.16
+  - name: jdx/mise@v2026.5.18
