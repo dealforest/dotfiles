@@ -19,6 +19,9 @@ trust_level = "trusted"
 [projects."/Users/dealforest/.ghq/github.com/ubiregiinc/ubiregi-client"]
 trust_level = "trusted"
 
+[projects."/Users/dealforest"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = false
 
