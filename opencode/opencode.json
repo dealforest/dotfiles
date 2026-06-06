@@ -81,17 +81,34 @@
   "mcp": {
     "context7": {
       "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
       "enabled": true
     },
     "xcodeproj": {
       "type": "local",
-      "command": ["docker", "run", "--pull=always", "--rm", "-i", "-v", "{env:PWD}:/workspace", "ghcr.io/giginet/xcodeproj-mcp-server:latest", "/workspace"],
+      "command": [
+        "docker",
+        "run",
+        "--pull=always",
+        "--rm",
+        "-i",
+        "-v",
+        "{env:PWD}:/workspace",
+        "ghcr.io/giginet/xcodeproj-mcp-server:latest",
+        "/workspace"
+      ],
       "enabled": true
     },
     "cupertino": {
       "type": "local",
-      "command": ["/opt/homebrew/bin/cupertino", "serve"],
+      "command": [
+        "/opt/homebrew/bin/cupertino",
+        "serve"
+      ],
       "enabled": true
     }
   },
