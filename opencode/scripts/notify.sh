@@ -51,14 +51,12 @@ if [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ];
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
-        -sender "com.mitchellh.ghostty" \
         -execute "$TMP_SCRIPT" >/dev/null 2>&1 &) &
 else
     (terminal-notifier \
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
-        -sender "com.mitchellh.ghostty" \
         -activate "com.mitchellh.ghostty" >/dev/null 2>&1 &) &
 fi
 exit 0
