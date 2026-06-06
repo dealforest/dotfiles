@@ -121,5 +121,8 @@
       "template": "Display usage status showing model name, git branch, diff stats, context usage, and rate limits.\n\n!~/.config/opencode/scripts/usage-status.sh",
       "description": "Show usage status with model limits and costs"
     }
-  }
+  },
+  "plugin": [
+    "oh-my-openagent@latest"
+  ]
 }
