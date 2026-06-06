@@ -1,0 +1,90 @@
+[keys]
+prefix = "ctrl+t"
+new_workspace = "n"
+rename_workspace = "shift+n"
+close_workspace = "d"
+new_tab = "c"
+close_tab = "x"
+split_vertical = "v"
+split_horizontal = "s"
+close_pane = "q"
+fullscreen = "f"
+resize_mode = "r"
+focus_pane_left = "h"
+focus_pane_down = "j"
+focus_pane_up = "k"
+focus_pane_right = "l"
+previous_tab = "p"
+next_tab = "n"
+previous_workspace = "ctrl+p"
+next_workspace = "ctrl+n"
+detach = "ctrl+d"
+[[keys.command]]
+key = "g"
+type = "pane"
+command = "lazygit"
+
+[[keys.command]]
+key = "shift+p"
+type = "shell"
+command = "fish -c 'fzf-phantom'"
+
+[[keys.command]]
+key = "P"
+type = "shell"
+command = "fish -c 'phantom create'"
+
+[[keys.command]]
+key = "u"
+type = "shell"
+command = "fish -c 'herdr-open-url-current'"
+
+[[keys.command]]
+key = "shift+u"
+type = "shell"
+command = "fish -c 'herdr-open-url-all'"
+
+[[keys.command]]
+key = "shift+s"
+type = "shell"
+command = "fish -c 'herdr-sync-panes'"
+
+[[keys.command]]
+key = "shift+k"
+type = "shell"
+command = "fish -c 'herdr-kill-worktree'"
+
+[[keys.command]]
+key = "w"
+type = "shell"
+command = "fish -c 'herdr-workspace-switch'"
+
+[[keys.command]]
+key = "shift+w"
+type = "shell"
+command = "fish -c 'herdr-workspace-rename'"
+
+[[keys.command]]
+key = "shift+c"
+type = "shell"
+command = "fish -c 'herdr-capture-buffer'"
+
+[ui]
+sidebar_width = 26
+mouse_capture = true
+confirm_close = true
+show_agent_labels_on_pane_borders = true
+agent_panel_scope = "all"
+
+[ui.toast]
+enabled = true
+
+[ui.sound]
+enabled = true
+
+[advanced]
+allow_nested = false
+scrollback_limit_bytes = 10000000
+
+[theme]
+name = "tokyo-night"

@@ -7,5 +7,6 @@
   "tmux": "~/.config/tmux",
   "mise": "~/.config/mise",
   "nvim": "~/.config/nvim",
+  "herdr": "~/.config/herdr",
   "mmcp/mmcp.json": "~/.mmcp.json"
 }
