@@ -27,10 +27,12 @@ if [ -f "~/.ssh/config" ]; then
 fi
 
 # -------------------------------------------------------------------------
-# package enviroments
+# package enviroemtns
 # -------------------------------------------------------------------------
 
 function export_path_if_exists { [[ -d "$1" ]] && export PATH="$1:$PATH" }
+
+# aqua
 
 # mise
 if command -v mise >/dev/null 2>&1; then
