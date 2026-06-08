@@ -99,6 +99,18 @@ abbr -a tmka 'tmux kill-window -a'
 abbr -a tml 'tmux ls'
 abbr -a tmm 'tmux-codex-monitor-layout'
 
+# herdr
+abbr -a hc 'herdr-codex-layout --current-tab'
+abbr -a hcn 'herdr-codex-layout'
+abbr -a hcd 'herdr-codex-layout --dangerously-bypass-approvals-and-sandbox --current-tab'
+abbr -a hcdn 'herdr-codex-layout --dangerously-bypass-approvals-and-sandbox'
+abbr -a hcc 'herdr-claude-layout --current-tab'
+abbr -a hccn 'herdr-claude-layout'
+abbr -a hccd 'herdr-claude-layout --dangerously-skip-permissions --current-tab'
+abbr -a hccdn 'herdr-claude-layout --dangerously-skip-permissions'
+abbr -a hcm 'herdr-codex-monitor-layout'
+abbr -a hccm 'herdr-claude-monitor-layout'
+
 # phantom (並列実行向け)
 abbr -a ph phantom
 abbr -a phc 'phantom create'
