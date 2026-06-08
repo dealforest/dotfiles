@@ -81,17 +81,34 @@
   "mcp": {
     "context7": {
       "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
       "enabled": true
     },
     "xcodeproj": {
       "type": "local",
-      "command": ["docker", "run", "--pull=always", "--rm", "-i", "-v", "{env:PWD}:/workspace", "ghcr.io/giginet/xcodeproj-mcp-server:latest", "/workspace"],
+      "command": [
+        "docker",
+        "run",
+        "--pull=always",
+        "--rm",
+        "-i",
+        "-v",
+        "{env:PWD}:/workspace",
+        "ghcr.io/giginet/xcodeproj-mcp-server:latest",
+        "/workspace"
+      ],
       "enabled": true
     },
     "cupertino": {
       "type": "local",
-      "command": ["/opt/homebrew/bin/cupertino", "serve"],
+      "command": [
+        "/opt/homebrew/bin/cupertino",
+        "serve"
+      ],
       "enabled": true
     }
   },
@@ -104,5 +121,8 @@
       "template": "Display usage status showing model name, git branch, diff stats, context usage, and rate limits.\n\n!~/.config/opencode/scripts/usage-status.sh",
       "description": "Show usage status with model limits and costs"
     }
-  }
+  },
+  "plugin": [
+    "oh-my-openagent@latest"
+  ]
 }

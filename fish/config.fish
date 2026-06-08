@@ -15,6 +15,9 @@ set -g FISH_CACHE_DIR $XDG_CACHE_HOME/fish
 # add user config
 set -gp fish_function_path $FISH_CONFIG_DIR/user_functions $fish_function_path
 
+# herdr functions
+set -gp fish_function_path $HOME/.config/herdr/functions $fish_function_path
+
 # function load_user_config
 for file in $FISH_CONFIG_DIR/config/*.fish
     source $file &

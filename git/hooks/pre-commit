@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "gitleaks is required for pre-commit secret scanning." >&2
+  echo "Install it with: aqua install" >&2
+  exit 1
+fi
+
+exec gitleaks git --pre-commit --redact --staged --verbose

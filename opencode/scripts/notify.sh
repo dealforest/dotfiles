@@ -20,33 +20,43 @@ if [ -n "$TMUX" ]; then
 fi
 
 # Build title
-TITLE="OpenCode"
-if [ -n "$TMUX_TITLE" ]; then
-    TITLE="Claude Code - $TMUX_TITLE"
+current_dir_suffix=$(basename "$PWD")
+TITLE=""
+
+if [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ] && [ -n "$TMUX_TITLE" ]; then
+    TITLE="[$TMUX_SESSION] - [$TMUX_TITLE]: $current_dir_suffix"
+elif [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ]; then
+    TITLE="[$TMUX_SESSION] - [$TMUX_WINDOW]: $current_dir_suffix"
+else
+    terminal_name="${TERM_PROGRAM:-$TERM}"
+    [ -z "$terminal_name" ] && terminal_name="Terminal"
+    if [[ "$terminal_name" == xterm-* ]]; then
+        terminal_name="${terminal_name#xterm-}"
+    fi
+    TITLE="[$terminal_name]: $current_dir_suffix"
 fi
 
 # Build -execute command: AppleScript to activate Ghostty window + switch tmux pane
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-EXECUTE_CMD=""
-if [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ] && [ -n "$TMUX_TITLE" ]; then
-    EXECUTE_CMD="osascript '${SCRIPT_DIR}/activate-ghostty-window.scpt' '${TMUX_TITLE}' && tmux select-window -t '${TMUX_SESSION}:${TMUX_WINDOW}' && tmux select-pane -t '${TMUX_SESSION}:${TMUX_WINDOW}.${TMUX_PANE_INDEX}'"
-elif [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ]; then
-    EXECUTE_CMD="osascript -e 'tell application \"Ghostty\" to activate' && tmux select-window -t '${TMUX_SESSION}:${TMUX_WINDOW}' && tmux select-pane -t '${TMUX_SESSION}:${TMUX_WINDOW}.${TMUX_PANE_INDEX}'"
-fi
-
-if [ -n "$EXECUTE_CMD" ]; then
+if [ -n "$TMUX_SESSION" ] && [ -n "$TMUX_WINDOW" ] && [ -n "$TMUX_PANE_INDEX" ]; then
+    TMP_SCRIPT=$(mktemp /tmp/notify-action.XXXXXX.sh)
+    {
+        echo "#!/bin/bash"
+        echo "osascript -e 'tell application \"Ghostty\" to activate'"
+        echo "tmux select-window -t '${TMUX_SESSION}:${TMUX_WINDOW}'"
+        echo "tmux select-pane -t '${TMUX_SESSION}:${TMUX_WINDOW}.${TMUX_PANE_INDEX}'"
+        echo "rm -f '$TMP_SCRIPT'"
+    } > "$TMP_SCRIPT"
+    chmod +x "$TMP_SCRIPT"
     (terminal-notifier \
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
-        -sender "com.mitchellh.ghostty" \
-        -execute "$EXECUTE_CMD" >/dev/null 2>&1 &) &
+        -execute "$TMP_SCRIPT" >/dev/null 2>&1 &) &
 else
     (terminal-notifier \
         -title "$TITLE" \
         -message "$MESSAGE" \
         -sound "$SOUND" \
-        -sender "com.mitchellh.ghostty" \
         -activate "com.mitchellh.ghostty" >/dev/null 2>&1 &) &
 fi
 exit 0

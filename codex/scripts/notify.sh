@@ -27,15 +27,12 @@ message="$(first_string 'first([
 ] | map(select(type == "string" and length > 0))) // empty')"
 
 sound="default"
-title="Codex"
 
 case "$event" in
     approval-requested|permission-requested|input-required)
-        title="Codex - 質問があります"
         sound="Blow"
         ;;
     agent-turn-complete|task-complete|turn-complete|completed)
-        title="Codex - タスク完了"
         sound="Pop"
         ;;
 esac
@@ -64,6 +61,23 @@ if [[ -n "${TMUX:-}" ]]; then
     tmux_window="$(tmux display-message -p '#{window_index}' 2>/dev/null || true)"
     tmux_pane_index="$(tmux display-message -p '#{pane_index}' 2>/dev/null || true)"
     tmux_title="$(tmux display-message -p '#W' 2>/dev/null || true)"
+fi
+
+# Build title
+current_dir_suffix=$(basename "$PWD")
+title=""
+
+if [[ -n "$tmux_session" && -n "$tmux_window" && -n "$tmux_pane_index" && -n "$tmux_title" ]]; then
+    title="[$tmux_session] - [$tmux_title]: $current_dir_suffix"
+elif [[ -n "$tmux_session" && -n "$tmux_window" && -n "$tmux_pane_index" ]]; then
+    title="[$tmux_session] - [$tmux_window]: $current_dir_suffix"
+else
+    terminal_name="${TERM_PROGRAM:-$TERM}"
+    [[ -z "$terminal_name" ]] && terminal_name="Terminal"
+    if [[ "$terminal_name" == xterm-* ]]; then
+        terminal_name="${terminal_name#xterm-}"
+    fi
+    title="[$terminal_name]: $current_dir_suffix"
 fi
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"

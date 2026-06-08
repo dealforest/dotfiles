@@ -46,12 +46,12 @@ args = ["-y", "@upstash/context7-mcp@latest"]
 "gpt-5.3-codex" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-04-29T05:07:40Z"
+last_updated = "2026-05-20T06:00:11Z"
 source_type = "local"
 source = "/Users/dealforest/.ghq/github.com/dealforest/dotfiles/codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-04-29T00:46:02Z"
+last_updated = "2026-05-20T07:28:51Z"
 source_type = "local"
 source = "/Users/dealforest/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
