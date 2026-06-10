@@ -120,7 +120,7 @@ packages:
   - name: sxyazi/yazi@v26.5.6
   - name: typst/typst@v0.14.2
   - name: tamasfe/taplo@0.10.0
-  - name: jj-vcs/jj@v0.41.0
+  - name: jj-vcs/jj@v0.42.0
   - name: secretlint/secretlint@v13.0.2
   - name: gitleaks/gitleaks@v8.30.1
   - name: eza-community/eza@v0.23.4
